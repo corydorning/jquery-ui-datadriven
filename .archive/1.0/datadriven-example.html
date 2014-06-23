@@ -1,0 +1,1607 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- use chrome frame if installed -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>jQuery UI datadriven plugin</title>
+  <meta name="description" content="Philosophy">
+  <meta name="author" content="Cory Dorning">
+
+  <!-- Mobile viewport optimization -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- stylesheets -->
+  <link href="../../datadriven.css" rel="stylesheet" />
+  <!--<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet" />-->
+  <link href="/boilerplate/master/css/widget.css" rel="stylesheet" />
+
+  <!-- All JavaScript at the bottom, except this Modernizr build incl. Respond.js
+       Respond is a polyfill for min/max-width media queries. Modernizr enables HTML5 elements & feature detects;
+       for optimal performance, create your own custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.1/modernizr.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-size: .875em;
+      line-height: 1.4;
+    }
+
+    body, button, input, select, textarea {
+      font-family: sans-serif;
+      color: #222;
+    }
+
+    caption {
+      margin: 1em 0 ;
+      text-align: left;
+    }
+
+    code {
+      color: #0095FF;
+      background-color: #FCFCFC;
+      border: 1px solid #E1E1E8;
+      border-radius: 5px;
+      font-family: monospace, serif;
+      font-size: 12px;
+      padding: 1px 4px;
+    }
+
+    h2 { margin-top: 2em; }
+
+    .container { margin: 0 1em; }
+
+    .rule { border-bottom: #CCC solid 1px; }
+    .rule-dashed { border-bottom: #CCC dashed 1px; }
+
+    .ui-widget {
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+
+
+      /* ==|== tables ========================================================== */
+    .table {
+      max-width: 100%;
+      margin-bottom: 1em;
+      width: 100%;
+    }
+    .table th,
+    .table td {
+      padding: 8px;
+      line-height: 18px;
+      text-align: left;
+      vertical-align: top;
+      border-top: 1px solid rgb(221, 221, 221);
+    }
+    .table tbody tr:hover td,
+    .table tbody tr:hover th { background-color: rgb(245, 245, 245) !important; }
+
+    .table-bordered {
+      border: 1px solid rgb(221, 221, 221);
+      border-collapse: separate;
+      border-radius: 4px;
+      border-image: initial;
+    }
+    .table-bordered th + th,
+    .table-bordered td + td,
+    .table-bordered th + td,
+    .table-bordered td + th { border-left: 1px solid rgb(221, 221, 221); }
+
+    .table-bordered thead:first-child tr:first-child th:first-child,
+    .table-bordered tbody:first-child tr:first-child td:first-child { border-radius: 4px 0 0 0; }
+
+    .table-bordered thead:first-child tr:first-child th,
+    .table-bordered tbody:first-child tr:first-child th,
+    .table-bordered tbody:first-child tr:first-child td { border-top: 0; }
+
+    .table-condensed th,
+    .table-condensed td { padding: 4px 5px; }
+
+    .table-striped tbody tr:nth-child(odd) td,
+    .table-striped tbody tr:nth-child(odd) th { background-color: rgb(249, 249, 249); }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>jQuery UI Data-Driven Plugin</h1>
+    <p>A demo showcasing the jQuery plugin, datadriven. Be sure to check out the <a href="http://corydorning.com/projects/datadriven">datadriven project page</a> or just <a href="https://github.com/corydorning/datadriven">grab the source code</a>.</p>
+
+    <nav role="navigation">
+      <ul>
+        <li><a href="#accordion">Accordion</a></li>
+        <li><a href="#buttons">Buttons</a></li>
+        <li><a href="#datepicker">Datepicker</a></li>
+        <li><a href="#dialogs">Dialogs</a></li>
+        <li><a href="#menus">Menu</a></li>
+        <li><a href="#progress-bars">Progress Bars</a></li>
+        <li><a href="#responsive-tables">Responsive Tables</a></li>
+        <li><a href="#sliders">Sliders</a></li>
+        <li><a href="#spinners">Spinner</a></li>
+        <li><a href="#tabs">Tabs</a></li>
+        <li><a href="#tooltip">Tooltip</a></li>
+      </ul>
+    </nav>
+
+
+    <section id="accordion">
+      <h2 class="rule">Accordion</h2>
+
+      <div data-role="accordion" data-ui-accordion-header="h3">
+        <section>
+          <h3><a href="#">First</a></h3>
+
+          <div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor
+               sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet. Lorem
+               ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+               amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum
+               dolor sit amet.
+          </div>
+        </section>
+
+        <section id="accordion-test">
+          <h3><a href="#">Second</a></h3>
+
+          <div>Phasellus mattis tincidunt nibh.</div>
+        </section>
+
+        <section>
+          <h3><a href="#">Third</a></h3>
+
+          <div>Nam dui erat, auctor a, dignissim quis.</div>
+        </section>
+      </div><!-- .accordion -->
+
+
+      <table class="table table-bordered table-striped mar-t-double">
+        <caption>
+          <h2 class="rule-dashed">Accordion Options <small>using the Data-Driven plugin</small></h2>
+        </caption>
+
+        <thead>
+        <tr>
+          <th style="width: 235px;">Class / Data Attribute</th>
+          <th>Values</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td><code>class="accordion disabled"</code></td>
+          <td><code>disabled</code></td>
+          <td>Disables (<code>true</code>) or enables (<code>false</code>) the accordion. Can be set when initialising (first creating) the accordion.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-accordion-active</code></td>
+          <td><em>Boolean</em>, <em>Integer</em></td>
+          <td>Selector for the active element. Set to <code>false</code> to display none at start. Needs <code>collapsible: true</code>.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-accordion-activate</code></td>
+          <td><em>Selector</em></td>
+          <td>Selector for the trigger element you want to activate.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-accordion-animated</code></td>
+          <td><em>Boolean</em>, <code>"blind"</code>, <code>"bounce"</code>, <code>"clip"</code>, <code>"drop"</code>, <code>"explode"</code>, <code>"fold"</code>, <code>"highlight"</code>, <code>"puff"</code>, <code>"pulsate"</code>, <code>"scale"</code>, <code>"shake"</code>, <code>"size"</code>, <code>"slide"</code>, <code>"transfer"</code></td>
+          <td>Choose your favorite animation, or disable them (set to <code>false</code>).</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-accordion-autoheight</code></td>
+          <td><em>Boolean</em></td>
+          <td>If set, the highest content part is used as height reference for all other parts. Provides more consistent animations.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-accordion-clearstyle</code></td>
+          <td><em>Boolean</em></td>
+          <td>If set, clears height and overflow styles after finishing animations. This enables accordions to work with dynamic content. Won't work together with <code>autoHeight</code> (<code>data-ui-accordion-autoheight</code>).</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-accordion-collapsible</code></td>
+          <td><em>Boolean</em></td>
+          <td>Whether all the sections can be closed at once. Allows collapsing the active section by the triggering <code>event</code> (<code>data-ui-event</code>).</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-event</code></td>
+          <td><em>Event</em></td>
+          <td>The event on which to trigger the accordion.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-accordion-fillspace</code></td>
+          <td><em>Boolean</em></td>
+          <td>If set, the accordion completely fills the height of the parent element. Overrides <code>autoHeight</code> (<code>data-ui-accordion-autoheight</code>).</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-accordion-header</code></td>
+          <td><em>jQuery Object</em>, <em>Selector</em></td>
+          <td>Selector for the header element.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-icon-active</code></td>
+          <td rowspan="2">
+            <code>ui-icon-<em>name</em></code>
+            <span class="help-block"><em>name</em> should be replaced with the necessary icon class, found on the <strong>Components</strong> page.</span>
+          </td>
+          <td rowspan="2">Icons to use for headers. Icons may be specified for 'header' and 'headerSelected', and we recommend using the icons native to the jQuery UI CSS Framework manipulated by jQuery UI ThemeRoller. Set to <code>false</code> to have no icons displayed.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-icon-default</code></td>
+        </tr>
+
+        </tbody>
+      </table>
+    </section><!-- #accordion -->
+
+
+    <section id="autocomplete">
+      <h2 class="rule">Autocomplete</h2>
+
+      <label for="geonames" class="h3 text-primary">Enter City, State or Country</label>
+      <input type="text" id="geonames" data-role="autocomplete" class="grid6" data-ui-autocomplete-source="geonames">
+      <p class="help-block">Powered by <a href="http://www.geonames.org/">geonames.org</a>.</p>
+
+
+      <table class="table table-bordered table-striped mar-t-double">
+        <caption>
+          <h2 class="rule-dashed">Autocomplete Options <small>using the Data-Driven plugin</small></h2>
+        </caption>
+
+        <thead>
+        <tr>
+          <th style="width: 285px;">Class / Data Attribute</th>
+          <th style="width: 205px;">Values</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td><code>class="autocomplete disabled"</code></td>
+          <td><code>disabled</code></td>
+          <td>Disables (<code>true</code>) or enables (<code>false</code>) the autocomplete. Can be set when initialising (first creating) the autocomplete.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-autocomplete-appendto</code></td>
+          <td><em>Selector</em></td>
+          <td>Which element the menu should be appended to.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-autocomplete-autofocus</code></td>
+          <td><em>Boolean</em></td>
+          <td>If set to true the first item will be automatically focused.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-autocomplete-delay</code></td>
+          <td><em>Integer</em></td>
+          <td>The delay in milliseconds the Autocomplete waits after a keystroke to activate itself. A zero-delay makes sense for local data (more responsive), but can produce a lot of load for remote data, while being less responsive.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-autocomplete-minlength</code></td>
+          <td><em>Integer</em></td>
+          <td>The minimum number of characters a user has to type before the Autocomplete activates. Zero is useful for local data with just a few items. Should be increased when there are a lot of items, where a single character would match a few thousand items.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-autocomplete-position-my</code></td>
+          <td rowspan="2"><code>"top"</code>, <code>"center"</code>, <code>"bottom"</code>, <code>"left"</code>, <code>"right"</code></td>
+          <td>Defines which position on <strong>the element being positioned</strong> to align with the target element: "horizontal vertical" alignment. A single value such as <code>"right"</code> will default to <code>"right center"</code>, <code>"top"</code> will default to <code>"center top"</code> (following CSS convention).</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-autocomplete-position-at</code></td>
+
+          <td>Defines which position on <strong>the target element</strong> to align the positioned element against: "horizontal vertical" alignment. A single value such as <code>"right"</code> will default to <code>"right center"</code>, <code>"top"</code> will default to <code>"center top"</code> (following CSS convention).</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-autocomplete-position-collision</code></td>
+          <td><code>"flip"</code>, <code>"fit"</code>, <code>"fit flip"</code>, <code>"fit none"</code></td>
+          <td>When the positioned element overflows the window in some direction, move it to an alternative position. Similar to <code>my</code> and <code>at</code>, this accepts a single value or a pair.</td>
+        </tr>
+
+        </tbody>
+      </table>
+    </section><!-- #autocomplete -->
+
+
+    <section id="buttons">
+      <h2 class="rule">Buttons &amp; Buttonsets</h2>
+
+      <table class="table table-bordered table-striped mar-t-default">
+        <caption>
+          <h2 class="rule-dashed">Button Options &amp; States <small>using the Data-Driven plugin</small></h2>
+        </caption>
+
+        <thead>
+        <tr>
+          <th style="width: 105px;">Button</th>
+          <th style="width: 185px;">Buttonset</th>
+          <th style="width: 220px;">Class / Data Attribute</th>
+          <th>Value</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+              <button data-role="button" data-ui-button-loading-text="Loading...">Load Button</button>
+              <button data-role="button" type="submit" data-ui-button-loading-text="Loading...">Load Button</button>
+            </td>
+            <td>
+              <div data-role="buttonset"  data-ui-buttonset-loading-text="Loading...">
+                <input type="radio" id="loading-radio1" name="loading-radio">
+                <label for="loading-radio1">Load 1</label>
+
+                <input type="radio" id="loading-radio2" name="loading-radio" checked="checked">
+                <label for="loading-radio2">Load 2</label>
+              </div>
+            </td>
+            <td>
+              <code>data-ui-button-loading-text</code>
+              <br><br>
+              <code>data-ui-buttonset-loading-text</code>
+            </td>
+            <td>String to be displayed while the button loads/processes its click event</td>
+            <td>Changes button state to <code>disabled</code> and displays the defined loading text.</td>
+          </tr>
+
+          <tr>
+            <td>
+              <button data-role="btn" class="disabled">Disabled</button>
+            </td>
+            <td>
+              <div data-role="buttonset" class="disabled">
+                <input type="radio" id="disabled-radio1" name="disabled-radio">
+                <label for="disabled-radio1">Choice 1</label>
+
+                <input type="radio" id="disabled-radio2" name="disabled-radio" checked="checked">
+                <label for="disabled-radio2">Choice 2</label>
+              </div>
+            </td>
+            <td><code>class="btn disabled"</code></td>
+            <td><code>disabled</code></td>
+            <td>Changes button state to <code>disabled</code></td>
+          </tr>
+          <tr>
+            <td>
+              <button data-role="button" data-ui-icon-primary="ui-icon-locked">Primary</button>
+            </td>
+            <td>
+              <div data-role="buttonset">
+                <input type="radio" id="primary-icon-radio1" name="primary-icon-radio" data-ui-icon-primary="ui-icon-locked">
+                <label for="primary-icon-radio1">Choice 1</label>
+
+                <input type="radio" id="primary-icon-radio2" name="primary-icon-radio" checked="checked" data-ui-icon-primary="ui-icon-unlocked">
+                <label for="primary-icon-radio2">Choice 2</label>
+              </div>
+            </td>
+            <td><code>data-ui-icon-primary</code></td>
+            <td rowspan="2">
+              <code>ui-icon-<em>name</em></code>
+              <span class="help-block"><em>name</em> should be replaced with the necessary icon class, found on the <strong>Components</strong> page.</span>
+            </td>
+            <td>Adds the icon class specified in the data-attribute <strong>before</strong> the button text</td>
+          </tr>
+          <tr>
+            <td>
+              <button data-role="button" data-ui-icon-secondary="ui-icon-triangle-1-e">Secondary</button>
+            </td>
+            <td>
+              <div data-role="buttonset">
+                <input type="radio" id="secondary-icon-radio1" name="secondary-icon-radio" data-ui-icon-secondary="ui-icon-triangle-1-e">
+                <label for="secondary-icon-radio1">Choice 1</label>
+
+                <input type="radio" id="secondary-icon-radio2" name="secondary-icon-radio" checked="checked" data-ui-icon-secondary="ui-icon-triangle-1-e">
+                <label for="secondary-icon-radio2">Choice 2</label>
+              </div>
+            </td>
+            <td><code>data-ui-icon-secondary</code></td>
+
+            <td>Adds the icon class specified in the data-attribute <strong>after</strong> the button text</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+
+    <section id="datepicker">
+      <h2 class="rule">Datepickers</h2>
+
+      <h3>Enter a Date</h3>
+      <input type="text" data-role="datepicker" id="datepicker1" placeholder="MM/DD/YYYY" data-ui-datepicker-nonbusinessdays="04/08/2013" data-ui-datepicker-mindate="-5" data-ui-datepicker-maxdate="0" data-ui-datepicker-maxdate-control="#datepicker2" data-ui-datepicker-mindate-control="#datepicker2" data-ui-datepicker-mindate-control-days="-30">
+
+      <input type="text" data-role="datepicker" id="datepicker2" placeholder="MM/DD/YYYY" data-ui-datepicker-mindate="-18m" data-ui-datepicker-maxdate="0" data-ui-datepicker-maxdate-control="#datepicker1" data-ui-datepicker-maxdate-control-days="30" data-ui-datepicker-mindate-control="#datepicker1">
+
+      <table class="table table-bordered table-striped mar-t-double">
+        <caption>
+          <h2 class="rule-dashed">Datepicker Options <small>using the Data-Driven plugin</small></h2>
+        </caption>
+
+        <thead>
+        <tr>
+          <th style="width: 285px;">Class / Data Attribute</th>
+          <th style="width: 205px;">Values</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><code>class="date disabled"</code></td>
+            <td><code>disabled</code></td>
+            <td>Disables (<code>true</code>) or enables (<code>false</code>) the datepicker. Can be set when initialising (first creating) the datepicker.</td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-changemonth</code></td>
+            <td><em>Boolean</em></td>
+            <td>If set to true the first item will be automatically focused.</td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-defaultdate</code></td>
+            <td><em>Integer</em></td>
+            <td>The delay in milliseconds the Autocomplete waits after a keystroke to activate itself. A zero-delay makes sense for local data (more responsive), but can produce a lot of load for remote data, while being less responsive.</td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-gotocurrent</code></td>
+            <td><em>Integer</em></td>
+            <td>The minimum number of characters a user has to type before the Autocomplete activates. Zero is useful for local data with just a few items. Should be increased when there are a lot of items, where a single character would match a few thousand items.</td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-maxdate</code></td>
+            <td><em>Date Value</em>, <em>Restricted Days</em> (optional)</td>
+            <td>
+              <p>The maximum selectable date.</p>
+              <dl>
+                <dt>Date Value</dt>
+                <dd>
+                  <ul class="no-marker mar-t-none pad-l-none">
+                    <li>
+                      <em>Date</em>: A date string containing the maximum date. For example, "01/01/2013" would set the max date to January 1, 2013.</li>
+                    <li class="mar-t-default">
+                      <em>Integer</em>: A number of days from today. For example <code>2</code> represents two days from today and <code>-1</code> represents yesterday.</li>
+                    <li class="mar-t-default">
+                      <em>String</em>: A string in the format defined by the dateFormat option, or a relative date. Relative dates must contain value and period pairs; valid periods are <code>"y"</code> for years, <code>"m"</code> for months, <code>"w"</code> for weeks, and <code>"d"</code> for days. For example, <code>"+1m +7d"</code> represents one month and seven days from today.</li>
+                  </ul>
+                </dd>
+
+                <dt>Restricted Days</dt>
+                <dd>
+                  <ul class="no-marker mar-t-none pad-l-none">
+                    <li>
+                      <em><code>true</code></em> - does not include any weekends or holidays in your max day count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a max date value of 7 will actually be 9 days from today, since weekends aren't counted.</li>
+                    <li>
+                      <em><code>false</code></em> - includes any weekends or holidays in your max day count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a max date value of 7 will actually be 7 days from today, since weekends are still counted.</li>
+                  </ul>
+                </dd>
+              </dl>
+
+              <p><strong>NOTE:</strong> The restricted days only work with an <em>Integer</em> <strong>Date Value</strong>. It does not work with the <em>Date</em> or <em>String</em> variations.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-mindate</code></td>
+            <td><em>Date Value</em>, <em>Restricted Days</em> (optional)</td>
+            <td>
+              <p>The minimum selectable date.</p>
+              <dl>
+                <dt>Date Value</dt>
+                <dd>
+                  <ul class="no-marker mar-t-none pad-l-none">
+                    <li>
+                      <em>Date</em>: A date string containing the minimum date. For example, "01/01/2013" would set the min date to January 1, 2013.</li>
+                    <li class="mar-t-default">
+                      <em>Integer</em>: A number of days from today. For example <code>2</code> represents two days from today and <code>-1</code> represents yesterday.</li>
+                    <li class="mar-t-default">
+                      <em>String</em>: A string in the format defined by the dateFormat option, or a relative date. Relative dates must contain value and period pairs; valid periods are <code>"y"</code> for years, <code>"m"</code> for months, <code>"w"</code> for weeks, and <code>"d"</code> for days. For example, <code>"+1m +7d"</code> represents one month and seven days from today.</li>
+                  </ul>
+                </dd>
+
+                <dt>Restricted Days</dt>
+                <dd>
+                  <ul class="no-marker mar-t-none pad-l-none">
+                    <li>
+                      <code>true</code> - does not include any weekends or holidays in your min day count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a min date value of 7 will actually be 9 days from today, since weekends aren't counted.</li>
+                    <li>
+                      <code>false</code> - includes any weekends or holidays in your min day count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a min date value of 7 will actually be 7 days from today, since weekends are still counted.</li>
+                  </ul>
+                </dd>
+              </dl>
+
+              <p><strong>NOTE:</strong> The restricted days only work with an <em>Integer</em> <strong>Date Value</strong>. It does not work with the <em>Date</em> or <em>String</em> variations.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-maxdate-control</code></td>
+            <td><em>Selector</em>, <em>Date Value</em> (optional), <em>Restricted Days</em> (optional)</td>
+            <td>
+              <p>The maximum selectable date based on another datepicker field.</p>
+              <dl>
+                <dt>Selector</dt>
+                <dd>Selector of the datepicker input you want to get the date of.</dd>
+
+                <dt>Date Value - Integer</dt>
+                <dd>The number of days from to add or subtract from the date in the provided <em>Selector</em> field. For example <code>2</code> represents two days from the datepicker fields date and <code>-1</code> represents 1 day prior the datepicker fields date.</dd>
+
+                <dt>Restricted Days</dt>
+                <dd>
+                  <ul class="no-marker mar-t-none pad-l-none">
+                    <li>
+                      <em><code>true</code></em> - does not include any weekends or holidays in your max day count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a max date value of 7 will actually be 9 days from today, since weekends aren't counted.</li>
+                    <li>
+                      <em><code>false</code></em> - includes any weekends or holidays in your max day count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a max date value of 7 will actually be 7 days from today, since weekends are still counted.</li>
+                  </ul>
+                </dd>
+              </dl>
+
+              <p><strong>NOTE:</strong> The restricted days only work with an <em>Integer</em> <strong>Date Value</strong>. It does not work with the <em>Date</em> or <em>String</em> variations.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-maxdate-control-days</code></td>
+            <td><em>Integer</em>, <em>Restricted Days</em> (optional)</td>
+            <td>
+              <p>Requires the use of <code>data-ui-datepicker-maxdate-control</code>.</p>
+              <dl>
+                <dt>Integer</dt>
+                <dd>The number of days to add or subtract from the <code>data-ui-datepicker-maxdate-control</code> date. For example <code>2</code> represents two days from the datepicker control date and <code>-1</code> represents 1 day prior the datepicker control date.</dd>
+
+                <dt>Restricted Days</dt>
+                <dd>
+                  <ul class="no-marker mar-t-none pad-l-none">
+                    <li>
+                      <code>true</code> - does not count any nonbusinessdays or weekends in your <code>data-ui-datepicker-maxdate-control-date</code> count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a <code>data-ui-datepicker-maxdate-control-days</code> value of <code>7,true</code> will actually be 9 days from the control date, since weekends aren't counted.</li>
+                    <li>
+                      <code>false</code> - counts any nonbusinessdays or weekends in your <code>data-ui-datepicker-maxdate-control-date</code> count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a <code>data-ui-datepicker-maxdate-control-days</code> value of <code>7</code> or <code>7,false</code> will be 7 days from the control date, since weekends are still counted.</li>
+                  </ul>
+                </dd>
+              </dl>
+
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-mindate-control</code></td>
+            <td><em>Selector</em>, <em>Date Value</em> (optional), <em>Restricted Days</em> (optional)</td>
+            <td>
+              <p>The minimum selectable date based on another datepicker field</p>
+              <dl>
+                <dt>Selector</dt>
+                <dd>Selector of the datepicker input you want to get the date of.</dd>
+
+                <dt>Date Value - Integer</dt>
+                <dd>The number of days from to add or subtract from the date in the provided <em>Selector</em> field. For example <code>2</code> represents two days from the datepicker fields date and <code>-1</code> represents 1 day prior the datepicker fields date.</dd>
+
+                <dt>Restricted Days</dt>
+                <dd>
+                  <ul class="no-marker mar-t-none pad-l-none">
+                    <li>
+                      <code>true</code> - does not include any weekends or holidays in your min day count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a min date value of 7 will actually be 9 days from today, since weekends aren't counted.</li>
+                    <li>
+                      <code>false</code> - includes any weekends or holidays in your min day count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a min date value of 7 will actually be 7 days from today, since weekends are still counted.</li>
+                  </ul>
+                </dd>
+              </dl>
+
+              <p><strong>NOTE:</strong> The restricted days only work with an <em>Integer</em> <strong>Date Value</strong>. It does not work with the <em>Date</em> or <em>String</em> variations.</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-mindate-control-days</code></td>
+            <td><em>Integer</em>, <em>Restricted Days</em> (optional)</td>
+            <td>
+              <p>Requires the use of <code>data-ui-datepicker-mindate-control</code>.</p>
+              <dl>
+                <dt>Integer</dt>
+                <dd>The number of days to add or subtract from the <code>data-ui-datepicker-mindate-control</code> date. For example <code>2</code> represents two days from the datepicker control date and <code>-1</code> represents 1 day prior the datepicker control date.</dd>
+
+                <dt>Restricted Days</dt>
+                <dd>
+                  <ul class="no-marker mar-t-none pad-l-none">
+                    <li>
+                      <code>true</code> - does not count any nonbusinessdays or weekends in your <code>data-ui-datepicker-mindate-control-date</code> count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a <code>data-ui-datepicker-mindate-control-days</code> value of <code>7,true</code> will actually be 9 days from the control date, since weekends aren't counted.</li>
+                    <li>
+                      <code>false</code> - counts any nonbusinessdays or weekends in your <code>data-ui-datepicker-mindate-control-date</code> count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a <code>data-ui-datepicker-mindate-control-days</code> value of <code>7</code> or <code>7,false</code> will be 7 days from the control date, since weekends are still counted.</li>
+                  </ul>
+                </dd>
+              </dl>
+
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-nonbusinessdays</code></td>
+            <td>
+              <em>Date</em>
+            </td>
+            <td>Comma separated string of dates in <code>mm/dd/yyyy</code> format.</td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-noweekends</code></td>
+            <td><em>Boolean</em></td>
+            <td>If set to true the weekends will not be selectable.</td>
+          </tr>
+
+          <tr>
+            <td><code>data-ui-datepicker-numberofmonths</code></td>
+            <td>
+              <ul class="no-marker mar-t-none pad-l-none">
+                <li>
+                  <em>Number</em>: The number of months to display in a single row.</li>
+                <li class="mar-t-default">
+                  <em>Array</em>: An array defining the number of rows and columns to display.</li>
+              </ul>
+            </td>
+            <td>The number of months to show at once.</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </section><!-- #datepicker -->
+
+
+
+    <section id="dialogs">
+      <h2 class="rule">Dialogs</h2>
+
+      <p>
+        <a href="#dialog-demo" data-role="button">Launch A Dialog</a>
+
+        <label><input type="checkbox" id="dialog-checkbox"> Launch Dialog</label>
+
+        <label>
+          <select id="dialog-select">
+            <option>-- Choose One --</option>
+            <option>Triggers Dialog</option>
+          </select>
+        </label>
+      </p>
+
+      <p>
+        <a href="#modal-demo" data-role="button">Launch A Modal</a>
+
+        <label><input type="checkbox" id="modal-checkbox"> Launch Modal</label>
+
+        <label>
+          <select id="modal-select">
+            <option>-- Choose One --</option>
+            <option>Triggers Modal</option>
+          </select>
+        </label>
+      </p>
+
+      <div id="dialog-demo" data-role="dialog" data-ui-trigger="[href=#dialog-demo]">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, dolor in sodales ullamcorper, turpis leo ultrices mauris, non hendrerit erat nibh in risus. In augue metus, fringilla eget bibendum ut, tincidunt luctus neque. Vivamus non aliquet dolor.</p>
+
+        <p>Fusce rutrum auctor luctus. Quisque eleifend massa mi. Aenean eu quam quis neque feugiat sagittis sollicitudin vitae nunc. Sed ante ante, feugiat sit amet adipiscing id, consequat vel ante. Morbi bibendum placerat urna, non condimentum quam ornare iaculis. Vivamus in dolor ut nulla lacinia imperdiet. Aliquam ac velit lorem, sit amet vulputate nulla. Nam eleifend elementum ipsum vel semper.</p>
+      </div>
+
+      <div id="modal-demo" data-role="modal" data-ui-trigger="[href=#modal-demo]" data-ui-trigger-delegate="#dialogs">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, dolor in sodales ullamcorper, turpis leo ultrices mauris, non hendrerit erat nibh in risus. In augue metus, fringilla eget bibendum ut, tincidunt luctus neque. Vivamus non aliquet dolor.</p>
+
+        <p>Fusce rutrum auctor luctus. Quisque eleifend massa mi. Aenean eu quam quis neque feugiat sagittis sollicitudin vitae nunc. Sed ante ante, feugiat sit amet adipiscing id, consequat vel ante. Morbi bibendum placerat urna, non condimentum quam ornare iaculis. Vivamus in dolor ut nulla lacinia imperdiet. Aliquam ac velit lorem, sit amet vulputate nulla. Nam eleifend elementum ipsum vel semper.</p>
+      </div>
+
+      <div id="dialog-form-demo" data-role="dialog" data-ui-trigger="#dialog-checkbox, #dialog-select" data-ui-trigger-prevent-default="false" data-ui-event="change">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, dolor in sodales ullamcorper, turpis leo ultrices mauris, non hendrerit erat nibh in risus. In augue metus, fringilla eget bibendum ut, tincidunt luctus neque. Vivamus non aliquet dolor.</p>
+
+        <p>Fusce rutrum auctor luctus. Quisque eleifend massa mi. Aenean eu quam quis neque feugiat sagittis sollicitudin vitae nunc. Sed ante ante, feugiat sit amet adipiscing id, consequat vel ante. Morbi bibendum placerat urna, non condimentum quam ornare iaculis. Vivamus in dolor ut nulla lacinia imperdiet. Aliquam ac velit lorem, sit amet vulputate nulla. Nam eleifend elementum ipsum vel semper.</p>
+      </div>
+
+      <div id="modal-form-demo" data-role="modal" data-ui-trigger="#modal-checkbox, #modal-select" data-ui-trigger-prevent-default="false" data-ui-event="change">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, dolor in sodales ullamcorper, turpis leo ultrices mauris, non hendrerit erat nibh in risus. In augue metus, fringilla eget bibendum ut, tincidunt luctus neque. Vivamus non aliquet dolor.</p>
+
+        <p>Fusce rutrum auctor luctus. Quisque eleifend massa mi. Aenean eu quam quis neque feugiat sagittis sollicitudin vitae nunc. Sed ante ante, feugiat sit amet adipiscing id, consequat vel ante. Morbi bibendum placerat urna, non condimentum quam ornare iaculis. Vivamus in dolor ut nulla lacinia imperdiet. Aliquam ac velit lorem, sit amet vulputate nulla. Nam eleifend elementum ipsum vel semper.</p>
+      </div>
+
+      <table class="table table-bordered table-striped mar-t-double">
+        <caption>
+          <h2 class="rule-dashed">Dialog Options <small>using the Data-Driven plugin</small></h2>
+        </caption>
+
+        <thead>
+        <tr>
+          <th style="width: 285px;">Class / Data Attribute</th>
+          <th style="width: 205px;">Values</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td><code>class</code></td>
+          <td><code>dialog</code></td>
+          <td>Will initialize a dialog instance. A dialog is a floating window that contains a title bar and a content area.</td>
+        </tr>
+
+        <tr>
+          <td><code>class</code></td>
+          <td><code>modal</code></td>
+          <td rowspan="2">The dialog will have modal behavior; other items on the page will be disabled (i.e. cannot be interacted with). Modal dialogs create an overlay below the dialog but above other page elements.</td>
+        </tr>
+
+        <tr>
+          <td>
+            <code>data-ui-dialog-modal</code>
+          </td>
+          <td><em>Boolean</em></td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-autoopen</code></td>
+          <td><em>Boolean</em></td>
+          <td>When autoOpen is true the dialog will open automatically when dialog is called. If false it will stay hidden until .dialog("open") is called on it.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-escape</code></td>
+          <td><em>Boolean</em></td>
+          <td>Specifies whether the dialog should close when it has focus and the user presses the esacpe (ESC) key.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-closetext</code></td>
+          <td><em>String</em></td>
+          <td>Specifies the text for the close button. Note that the close text is visibly hidden when using a standard theme.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-class</code></td>
+          <td><em>String</em></td>
+          <td>The specified class name(s) will be added to the dialog, for additional theming.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-draggable</code></td>
+          <td><em>Boolean</em></td>
+          <td>If set to true, the dialog will be draggable will be draggable by the titlebar.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-height</code></td>
+          <td><em>Number</em></td>
+          <td>The height of the dialog, in pixels. Specifying 'auto' is also supported to make the dialog adjust based on its content.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-maxheight</code></td>
+          <td><em>Number</em></td>
+          <td>The maximum height to which the dialog can be resized, in pixels.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-minheight</code></td>
+          <td><em>Number</em></td>
+          <td>The minimum height to which the dialog can be resized, in pixels.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-resizable</code></td>
+          <td><em>Boolean</em></td>
+          <td>If set to true, the dialog will be resizable.</td>
+        </tr>
+
+        <tr>
+          <td>
+            <code>data-ui-dialog-title</code>
+          </td>
+          <td rowspan="2"><em>String</em></td>
+          <td rowspan="2">Specifies the title of the dialog. Any valid HTML may be set as the title. The title can also be specified by the title attribute on the dialog source element.</td>
+        </tr>
+
+        <tr>
+          <td><code>title</code>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-width</code></td>
+          <td><em>Number</em></td>
+          <td>The width of the dialog, in pixels.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-maxwidth</code></td>
+          <td><em>Number</em></td>
+          <td>The maximum width to which the dialog can be resized, in pixels.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-dialog-minwidth</code></td>
+          <td><em>Number</em></td>
+          <td>The minimum width to which the dialog can be resized, in pixels.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-event</code></td>
+          <td><em>Event</em></td>
+          <td>The event on which to trigger the dialog.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-trigger</code></td>
+          <td><em>Selector</em></td>
+          <td>Element that the event is applied to, which triggers the dialog. </td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-trigger-prevent-default</code></td>
+          <td><em>Boolean</em></td>
+          <td>By default, the <code>data-ui-trigger</code> default action is prevented and <code>data-ui-trigger-default</code> is set to <code>true</code>. To allow the default event action to occur set it to <code>false</code>. </td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-trigger-delegate</code></td>
+          <td><em>Selector</em></td>
+          <td>Requires <code>data-ui-trigger</code>. Provided selector acts as the event handler and is delegated to this element which triggers the dialog for any elements that match the <code>data-ui-trigger</code> selector.</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </section><!-- #dialogs -->
+
+
+    <section id="progress-bars">
+      <h2 class="rule">Progress Bar</h2>
+
+      <div data-role="progressbar" data-ui-progressbar-value="88"></div>
+
+      <table class="table table-bordered table-striped mar-t-double">
+        <caption>
+          <h2 class="rule-dashed">Progressbar Options <small>using the Data-Driven plugin</small></h2>
+        </caption>
+
+        <thead>
+        <tr>
+          <th style="width: 235px;">Class / Data Attribute</th>
+          <th>Values</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td><code>class="progressbar disabled"</code></td>
+          <td><code>disabled</code></td>
+          <td>Disables (<code>true</code>) or enables (<code>false</code>) the progressbar. Can be set when initialising (first creating) the progressbar.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-progressbar-value</code></td>
+          <td><em>Number</em></td>
+          <td>The value of the progressbar.</td>
+        </tr>
+
+        </tbody>
+      </table>
+
+    </section><!-- #progress-bars -->
+
+
+    <section id="responsive-tables">
+      <h2 class="rule">Responsive Tables</h2>
+
+      <p>The responsive tables mode selectively hides columns at narrower widths as a sensible default but also offers a menu to let users manually control which columns they want to see. The table works by hiding and showing columns based on two inputs: available screen width or by the user checking and unchecking which columns to display in a column picker popup.</p>
+
+      <table class="table" data-role="table">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Foo Column</th>
+          <th>Bar Column</th>
+          <th>Foo Bar Column</th>
+          <th>Bar Foo Column</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>1</td>
+          <td>Cory</td>
+          <td>Dorning</td>
+          <td>Foo</td>
+          <td>Bar</td>
+          <td>Foo Bar</td>
+          <td>Bar Foo</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Brayden</td>
+          <td>Dorning</td>
+          <td>Some Foo</td>
+          <td>Some Bar</td>
+          <td>Some Foo Bar</td>
+          <td>Some Bar Foo</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Noah</td>
+          <td>Dorning</td>
+          <td>More Foo</td>
+          <td>More Bar</td>
+          <td>More Foo Bar</td>
+          <td>More Bar Foo</td>
+        </tr>
+        </tbody>
+      </table>
+
+
+      <table class="table table-bordered table-striped mar-t-double">
+        <caption>
+          <h2 class="rule-dashed">Responsive Table Options <small>using the Data-Driven plugin</small></h2>
+        </caption>
+
+        <thead>
+        <tr>
+          <th style="width: 235px;">Class / Data Attribute</th>
+          <th>Values</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td><code>id</code></td>
+          <td><em>String</em></td>
+          <td>An <code>ID</code> attribute is also required on the table to associate it with the column chooser popup menu. This will also assist in the creation of responsive CSS rules.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-role</code></td>
+          <td><code>table</code></td>
+          <td>Applies the responsive table functionality to the table.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-priority</code></td>
+          <td><em>Number</em></td>
+          <td>
+            <p>Add <code>data-priority</code> attributes to each of the table headers of columns you want to responsively display and assign a priority (1 = highest, 6 = lowest). Any table header given a priority will be available in the column picker menu.</p>
+
+            <p>To make a column persistent so it's not available for hiding, omit the <code>data-priority</code> attribute. This will make the column visible at all widths and won't be available in the column chooser menu.</p>
+
+            <p><strong>NOTE:</strong> You may use any priority naming convention and assign as many levels of priority for the columns. The plugin simply generates class names based on the values in the data-priority attribute. For example, if a priority of <code>data-priority="critical"</code> is added to the heading, a class of <code>ui-table-priority-critical</code> will be applied to each cell in that column. </p>
+          </td>
+
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-min</code></td>
+          <td><em>Number</em></td>
+          <td>The minimum value of the slider.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-orientation</code></td>
+          <td><code>horizontal</code>, <code>vertical</code></td>
+          <td>This option determines whether the slider has the min at the left, the max at the right or the min at the bottom, the max at the top. Possible values: '<code>horizontal</code>', '<code>vertical</code>'.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-range</code></td>
+          <td><em>Boolean, String</em></td>
+          <td>If set to true, the slider will detect if you have two handles and create a stylable range element between these two. Two other possible values are 'min' and 'max'. A min range goes from the slider min to one handle. A max range goes from one handle to the slider max.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-step</code></td>
+          <td><em>Number</em></td>
+          <td>Determines the size or amount of each interval or step the slider takes between min and max. The full specified value range of the slider (max - min) needs to be evenly divisible by the step.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-value</code></td>
+          <td><em>Number</em></td>
+          <td>Determines the value of the slider, if there's only one handle. If there is more than one handle, determines the value of the first handle.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-values</code></td>
+          <td><em>Array</em></td>
+          <td>This option can be used to specify multiple handles. If range is set to true, the length of 'values' should be 2.</td>
+        </tr>
+
+        </tbody>
+      </table>
+    </section><!-- #responsive-tables -->
+
+
+    <section id="sliders">
+      <h2 class="rule">Slider</h2>
+
+      <div data-role="slider" data-ui-slider-value="50"></div>
+
+      <table class="table table-bordered table-striped mar-t-double">
+        <caption>
+          <h2 class="rule-dashed">Slider Options <small>using the Data-Driven plugin</small></h2>
+        </caption>
+
+        <thead>
+        <tr>
+          <th style="width: 235px;">Class / Data Attribute</th>
+          <th>Values</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td><code>class="slider disabled"</code></td>
+          <td><code>disabled</code></td>
+          <td>Disables (<code>true</code>) or enables (<code>false</code>) the slider. Can be set when initialising (first creating) the slider.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-animate</code></td>
+          <td><em>Boolean, String, Number</em></td>
+          <td>Whether to slide handle smoothly when user click outside handle on the bar. Will also accept a string representing one of the three predefined speeds ("<code>slow</code>", "<code>normal</code>", or "<code>fast</code>") or the number of milliseconds to run the animation (e.g. 1000).</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-max</code></td>
+          <td><em>Number</em></td>
+          <td>The maximum value of the slider.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-min</code></td>
+          <td><em>Number</em></td>
+          <td>The minimum value of the slider.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-orientation</code></td>
+          <td><code>horizontal</code>, <code>vertical</code></td>
+          <td>This option determines whether the slider has the min at the left, the max at the right or the min at the bottom, the max at the top. Possible values: '<code>horizontal</code>', '<code>vertical</code>'.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-range</code></td>
+          <td><em>Boolean, String</em></td>
+          <td>If set to true, the slider will detect if you have two handles and create a stylable range element between these two. Two other possible values are 'min' and 'max'. A min range goes from the slider min to one handle. A max range goes from one handle to the slider max.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-step</code></td>
+          <td><em>Number</em></td>
+          <td>Determines the size or amount of each interval or step the slider takes between min and max. The full specified value range of the slider (max - min) needs to be evenly divisible by the step.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-value</code></td>
+          <td><em>Number</em></td>
+          <td>Determines the value of the slider, if there's only one handle. If there is more than one handle, determines the value of the first handle.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-slider-values</code></td>
+          <td><em>Array</em></td>
+          <td>This option can be used to specify multiple handles. If range is set to true, the length of 'values' should be 2.</td>
+        </tr>
+
+        </tbody>
+      </table>
+
+    </section><!-- #sliders -->
+
+
+    <section id="spinner">
+      <h2 class="rule">Spinner</h2>
+
+      <p>Enhance a text input for entering numeric values, with up/down buttons and arrow key handling.</p>
+
+      <h3>Default Spinner</h3>
+
+      <p>
+        <label for="spinner-input">Select a value: </label>
+        <input id="spinner-input" data-role="spinner" name="value">
+      </p>
+
+
+      <table class="table table-bordered table-striped mar-t-double">
+        <caption>
+          <h2 class="rule-dashed">Spinner Options <small>using the Data-Driven plugin (Coming Soon)</small></h2>
+        </caption>
+
+        <thead>
+        <tr>
+          <th style="width: 235px;">Class / Data Attribute</th>
+          <th>Values</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td><code>class="spinner disabled"</code></td>
+          <td><code>disabled</code></td>
+          <td>Disables (true) or enables (false) the spinner. Can be set when initialising (first creating) the spinner.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-icon-up</code></td>
+          <td rowspan="2">
+            <code>ui-icon-<em>name</em></code>
+            <span class="help-block"><em>name</em> should be replaced with the necessary icon class, found on the <strong>Components</strong> page.</span>
+          </td>
+          <td rowspan="2">Icons to use for buttons, matching an icon defined by the jQuery UI CSS Framework. Set to <code>false</code> to have no icons displayed.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-icon-down</code></td>
+
+        </tr>
+
+        <tr>
+          <td><code>data-ui-spinner-incremental</code></td>
+      <td><em>Boolean</em>: When set to <code>true</code>, the stepping delta will increase when spun incessantly. When set to <code>false</code>, all steps are equal (as defined by the <code>step</code> option).</td>
+          <td>Controls the number of steps taken when holding down a spin button.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-spinner-max</code></td>
+          <td>
+            <ul class="no-marker pad-l-none">
+              <li>
+                <em>Number</em>: The maximum value</li>
+            </ul>
+          </td>
+          <td>The maximum allowed value. The element's <code>max</code> attribute is used if it exists and the option is not explicitly set. If <code>null</code>, there is no maximum enforced.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-spinner-min</code></td>
+          <td>
+            <ul class="no-marker pad-l-none">
+              <li><em>Number</em>: The minimum value</li>
+            </ul>
+          </td>
+          <td>The minimum allowed value. The element's <code>min</code> attribute is used if it exists and the option is not explicitly set. If <code>null</code>, there is no minimum enforced.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-spinner-page</code></td>
+          <td><em>Number</em></td>
+          <td>The number of steps to take when paging via the <code>pageUp</code>/<code>pageDown</code> methods.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-spinner-step</code></td>
+          <td>
+            <ul class="no-marker pad-l-none">
+              <li>
+                <em>Number</em>: The size of the step.</li>
+            </ul>
+          </td>
+      <td>The size of the step to take when spinning via buttons or via the <a href="#method-stepUp"><code>stepUp()</code></a>/<a href="#method-stepDown"><code>stepDown()</code></a> methods. The element's <code>step</code> attribute is used if it exists and the option is not explicitly set.</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </section><!-- end of spinner section -->
+
+
+    <section id="tabs">
+      <h2 class="rule">Tabs</h2>
+
+      <div data-role="tabs">
+        <ul>
+          <li><a href="#tabs-1">Tab 1</a></li>
+          <li><a href="#tabs-2">Tab 2</a></li>
+          <li><a href="#tabs-3">Tab 3</a></li>
+        </ul>
+        <div id="tabs-1">
+          <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+          <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+        </div>
+        <div id="tabs-2">
+          <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+        </div>
+        <div id="tabs-3">
+          <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+          <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+        </div>
+      </div><!-- .tabs -->
+
+      <table class="table table-bordered table-striped mar-t-double">
+        <caption>
+          <h2 class="rule-dashed">Tab Options <small>using the Data-Driven plugin</small></h2>
+        </caption>
+
+        <thead>
+        <tr>
+          <th style="width: 285px;">Class / Data Attribute</th>
+          <th style="width: 205px;">Values</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td><code>class</code></td>
+          <td><code>disabled</code></td>
+          <td>Disables (true) or enables (false) the tabs. Can be set when initialising (first creating) the tabs.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tabs-ajaxoptions</code></td>
+          <td><em>Object</em></td>
+          <td>Additional Ajax options to consider when loading tab content (see $.ajax).</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tabs-cache</code></td>
+          <td><em>Boolean</em></td>
+          <td>Whether or not to cache remote tabs content, e.g. load only once or with every click. Cached content is being lazy loaded, e.g once and only once for the first click. Note that to prevent the actual Ajax requests from being cached by the browser you need to provide an extra cache: false flag to ajaxOptions.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tabs-collapsible</code></td>
+          <td><em>Boolean</em></td>
+          <td>Set to true to allow an already selected tab to become unselected again upon reselection.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tabs-disabled</code></td>
+          <td><em>Array</em></td>
+          <td>An array containing the position of the tabs (zero-based index) that should be disabled on initialization.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-event</code></td>
+          <td><em>Event</em></td>
+          <td>The event on which to trigger the tab.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tabs-fx</code></td>
+          <td><em>Options</em>, <em>Array</em></td>
+          <td>Enable animations for hiding and showing tab panels. The duration option can be a string representing one of the three predefined speeds ("slow", "normal", "fast") or the duration in milliseconds to run an animation (default is "normal").</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tabs-idprefix</code></td>
+          <td><em>String</em></td>
+          <td>If the remote tab, its anchor element that is, has no title attribute to generate an id from, an id/fragment identifier is created from this prefix and a unique id returned by $.data(el), for example "ui-tabs-54".</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tabs-selected</code></td>
+          <td><em>Number</em></td>
+          <td>Zero-based index of the tab to be selected on initialization. To set all tabs to unselected pass -1 as value.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tabs-vertical</code></td>
+          <td><em>Boolean</em></td>
+          <td>Whether or not to set the tabs vertically along the left side instead of along the top.</td>
+        </tr>
+
+        </tbody>
+      </table>
+
+    </section><!-- #tabs -->
+
+
+    <section id="tooltip">
+      <h2 class="rule">Tooltip</h2>
+
+      <p>Hover the links above or use the tab key to cycle the focus on each element.</p>
+
+      <h3>Default Tooltip</h3>
+
+      <p>
+        <label for="age">Your age: </label>
+        <input data-role="tooltip" id="age" title="We ask for your age only for statistical purposes.">
+      </p>
+
+      <h3>jQuery</h3>
+
+      <code>
+      $('.tooltip').tooltip();
+      </code>
+
+      <h3>HTML</h3>
+
+<pre>
+<code>
+&lt;p&gt;
+  &lt;label for="age"&gt;Your age: &lt;/label&gt;
+  &lt;input class="tooltip" id="age" title="We ask for your age only for statistical purposes."&gt;
+&lt;/p&gt;
+</code>
+</pre>
+
+
+      <h3>Popover Tooltip</h3>
+      <p>
+        <label for="id">Your ID: </label>
+        <input data-role="popover" id="id" data-ui-tooltip-popover="true" title="If you do not have an ID, you may <a href='#'>request one</a>.">
+      </p>
+
+      <h3>HTML</h3>
+
+<pre>
+<code>
+&lt;p&gt;
+  &lt;label for="id"&gt;Your ID: &lt;/label&gt;
+  &lt;input class="tooltip" data-ui-tooltip-popover="true" id="id" title="If you do not have an ID, you may &lt;a href='#'&gt;request one&lt;/a&gt;."&gt;
+&lt;/p&gt;
+</code>
+</pre>
+
+      <table class="table table-bordered table-striped mar-t-double">
+        <caption>
+          <h2 class="rule-dashed">Tooltip Options <small>using the Data-Driven plugin (Coming Soon)</small></h2>
+        </caption>
+
+        <thead>
+        <tr>
+          <th style="width: 195px;">Class / Data Attribute</th>
+          <th>Values</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+          <td><code>data-ui-tooltip-class</code></td>
+          <td><em>String</em></td>
+          <td>A class to add to the widget, can be used to display various tooltip types, like warnings or errors.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tooltip-content</code></td>
+          <td><em>String</em></td>
+          <td>The content of the tooltip. When changing this option, you likely need to also change the <code>items</code> option. <em>Default content</em> is the </td>
+        </tr>
+
+        <tr>
+          <td><code>class="tooltip disabled"</code></td>
+          <td><code>disabled</code></td>
+          <td>Disables (<code>true</code>) or enables (<code>false</code>) the tooltip. Can be set when initialising (first creating) the tooltip.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tooltip-hide</code></td>
+          <td rowspan="2">
+            <ul class="no-marker pad-l-none">
+              <li>
+                <em>enables/disable animation</em>: <em>Boolean</em>
+              </li>
+
+              <li class="mar-t-divide">
+                <em>duration</em>: <code>Number</code>
+              </li>
+
+              <li class="mar-t-divide">
+                <em>easing</em>: <a href="http://api.jqueryui.com/easings/">Full List</a>
+              </li>
+
+              <li class="mar-t-divide">
+                <em>effects</em>: <code>"blind"</code>, <code>"bounce"</code>, <code>"clip"</code>, <code>"drop"</code>, <code>"explode"</code>, <code>"fold"</code>, <code>"highlight"</code>, <code>"puff"</code>, <code>"pulsate"</code>, <code>"scale"</code>, <code>"shake"</code>, <code>"size"</code>, <code>"slide"</code>, <code>"transfer"</code>
+              </li>
+            </ul>
+
+          </td>
+          <td rowspan="2">
+            If and how to animate the showing and hiding of the tooltip.
+                <span class="help-block">To set the duration, easing and effect at the same time you must use the following format:<br>
+                  <code>data-ui-tooltip-hide='{ "duration": 1000, "easing": "swing", "effect": "slideUp" }'</code>
+                  <code>data-ui-tooltip-show='{ "duration": 1000, "easing": "swing", "effect": "slideDown" }'</code>
+                </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tooltip-show</code></td>
+
+
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tooltip-items</code></td>
+          <td><em>Selector</em></td>
+          <td>A selector indicating which items should show tooltips. Customize if you're using something other then the title attribute for the tooltip content, or if you need a different selector for event delegation.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-position-my</code></td>
+          <td rowspan="2">
+            Format: <code>horizontal vertical</code>
+
+            <ul class="no-marker pad-l-none">
+              <li>
+                <em>horizontal</em>: <code>center</code>, <code>left</code>, <code>right</code>
+              <li class="mar-t-divide">
+                <em>vertical</em>: <code>center</code>, <code>top</code>, <code>bottom</code></li>
+            </ul>
+
+            <span class="help-block">Defaults to <code>center</code> for both the vertical and horizontal</span>
+          </td>
+          <td rowspan="2">
+            Identifies the position of submenus in relation to the associated parent menu item. The <code>of</code> option defaults to the parent menu item, but you can specify another element to position against. You can refer to the <a href="/position/">jQuery UI Position</a> utility for more details about the various options.
+          </td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-position-at</code></td>
+
+        </tr>
+
+        <tr>
+          <td><code>data-ui-position-collision</code></td>
+          <td>
+            <ul class="no-marker pad-l-none">
+              <li>
+                <code>"flip"</code>: Flips the element to the opposite side of the target and the collision detection is run again to see if it will fit. Whichever side allows more of the element to be visible will be used.</li>
+              <li class="mar-t-divide">
+                <code>"fit"</code>: Shift the element away from the edge of the window.</li>
+              <li class="mar-t-divide">
+                <code>"flipfit"</code>: First applies the flip logic, placing the element on whichever side allows more of the element to be visible. Then the fit logic is applied to ensure as much of the element is visible as possible.</li>
+              <li class="mar-t-divide">
+                <code>"none"</code>: Does not apply any collision detection.</li>
+            </ul>
+          </td>
+          <td><p>When the positioned element overflows the window in some direction, move it to an alternative position. Similar to <code>my</code> and <code>at</code>, this accepts a single value or a pair for horizontal/vertical, e.g., <code>"flip"</code>, <code>"fit"</code>, <code>"fit flip"</code>, <code>"fit none"</code>.</p></td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tooltip-popover</code></td>
+          <td><em>Boolean</em></td>
+          <td>Whether the tooltip should act as a popover or standard tooltip.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-ui-tooltip-track</code></td>
+          <td><em>Boolean</em></td>
+          <td>Whether the tooltip should track (follow) the mouse.</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </section><!-- end of tooltip section -->
+
+  </div><!-- .container -->
+
+
+  <!-- Javascript at the bottom for faster page loading -->
+  <!-- load jQuery script -->
+  <script src="/boilerplate/master/js/vendor/jquery.min.js"></script>
+  <script src="/boilerplate/master/js/vendor/jquery-ui.min.js"></script>
+
+  <!-- load jangle plugin -->
+  <script src="jquery-datadriven.js"></script>
+
+  <!-- demo scripts -->
+  <script>
+    $(function() {
+
+      var init = {
+        jqui: function(sel) {
+          "use strict";
+          console.log(new Date().getTime());
+          if (sel) {
+            // localized within the selector
+            $(sel)
+              .find('.accordion').accordion({ header: 'h3' })
+              .end()
+              .find('.autocomplete').autocomplete()
+              .end()
+              .find('.btn').button().filter('[data-ui-button-loading-text]').on('click', function(){ var $this = $(this); $this.button('loading'); }).end()
+              .end()
+              .find('.btn-set').buttonset().filter('[data-ui-buttonset-loading-text]').on('click', function(ev){ var $this = $(this); $this.buttonset('loading', ev); }).end()
+              .end()
+              .find('.date').datepicker()
+              .end()
+              .find('.dialog').dialog()
+              .end()
+              .find('.modal').dialog({ modal: true })
+              .end()
+              .find('.menu, .menu-icon').menu().on('mouseleave', function() { $(this).menu( 'collapseAll', null, true ); })
+              .end()
+              .find('.progress').progressbar()
+              .end()
+              .find('.spinner').spinner()
+              .end()
+              .find('.tabs').tabs()
+              .end()
+              .find('.toggler').toggler()
+              .end()
+              .find('.tooltip').tooltip();
+          } else {
+            // entire page
+            $('[data-role="accordion"]').accordion({ header: 'h3' });
+            $('[data-role="autocomplete"]').autocomplete();
+            $('[data-role="button"]').button().filter('[data-ui-button-loading-text]').on('click', function(){ var $this = $(this); $this.button('loading'); });
+            $('[data-role="buttonset"]').buttonset().filter('[data-ui-buttonset-loading-text]').on('click', function(ev){ var $this = $(this); $this.buttonset('loading', ev); });
+            $('[data-role="datepicker"]').datepicker();
+            $('[data-role="dialog"]').dialog();
+            $('[data-role="modal"]').dialog({ modal: true });
+            $('[data-role="menu"], [data-role="menu-icon"]').menu().on('mouseleave', function() { $(this).menu( 'collapseAll', null, true ); });
+            $('[data-role="progressbar"]').progressbar();
+            $('[data-role="spinner"]').spinner();
+            $('[data-role="tabs"]').tabs();
+            $('[data-role="tooltip"]').tooltip();
+          }
+          console.log(new Date().getTime());
+        }
+      };
+
+
+      init.jqui();
+
+
+      // autocomplete
+      function geonames( request, response ) {
+        $.ajax({
+          url: "http://ws.geonames.org/searchJSON",
+          dataType: "jsonp",
+          data: {
+            featureClass: "P",
+            style: "full",
+            maxRows: 12,
+            name_startsWith: request.term
+          },
+          success: function( data ) {
+            response( $.map( data.geonames, function( item ) {
+              return {
+                label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+                value: item.name
+              }
+            }));
+          }
+        });
+       }
+
+      // buttons loading state
+      $('[data-ui-button-loading-text]').on('click', function(){
+        var $this = $(this);
+
+        setTimeout(function() { $this.button('reset'); }, 3000);
+      });
+
+      // buttonsets loading state
+      $('[data-ui-buttonset-loading-text]').on('click', function(ev){
+        var $this = $(this);
+
+        setTimeout(function() { $this.buttonset('reset', ev); }, 3000);
+      });
+    });
+  </script>
+</body>
+</html>

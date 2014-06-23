@@ -1,0 +1,3387 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- use chrome frame if installed -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>jQuery UI Data-driven Framework</title>
+  <meta name="description" content="Datadriven framework">
+  <meta name="author" content="Cory Dorning">
+
+  <!-- Mobile viewport optimization -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- stylesheets -->
+  <link href="datadriven.css" rel="stylesheet" />
+  <link href="/boilerplate/master/css/widget.css" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0 2em;
+      font-size: .875em;
+      line-height: 1.4;
+    }
+
+    body, button, input, select, textarea {
+      font-family: sans-serif;
+      color: #222;
+    }
+
+    caption {
+      margin: 1em 0 ;
+      text-align: left;
+    }
+
+    code {
+      color: #0095FF;
+      background-color: #FCFCFC;
+      border: 1px solid #E1E1E8;
+      border-radius: 5px;
+      font-family: monospace, serif;
+      font-size: 12px;
+      padding: 1px 4px;
+    }
+
+    h2 { margin-top: 2em; }
+
+    table dt {
+      font-weight: normal;
+      margin: 1em 0 .5em;
+    }
+
+    .font-sz-small { font-size: 12px; }
+    .rule { border-bottom: #CCC solid 1px; }
+    .rule-dashed { border-bottom: #CCC dashed 1px; }
+    .text-lite { color: rgb(153, 153, 153) !important; }
+
+    .ui-widget {
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+
+
+      /* ==|== tables ========================================================== */
+    .table {
+      max-width: 100%;
+      margin-bottom: 1em;
+      width: 100%;
+    }
+    .table th,
+    .table td {
+      padding: 8px;
+      line-height: 18px;
+      text-align: left;
+      vertical-align: top;
+      border-top: 1px solid rgb(221, 221, 221);
+    }
+    .table tbody tr:hover td,
+    .table tbody tr:hover th { background-color: rgb(245, 245, 245) !important; }
+
+    .table-bordered {
+      border: 1px solid rgb(221, 221, 221);
+      border-collapse: separate;
+      border-radius: 4px;
+    }
+    .table-bordered th + th,
+    .table-bordered td + td,
+    .table-bordered th + td,
+    .table-bordered td + th { border-left: 1px solid rgb(221, 221, 221); }
+
+    .table-bordered thead:first-child tr:first-child th:first-child,
+    .table-bordered tbody:first-child tr:first-child td:first-child { border-radius: 4px 0 0 0; }
+
+    .table-bordered thead:first-child tr:first-child th,
+    .table-bordered tbody:first-child tr:first-child th,
+    .table-bordered tbody:first-child tr:first-child td { border-top: 0; }
+
+    .table-condensed th,
+    .table-condensed td { padding: 4px 5px; }
+
+    .table-striped tbody tr:nth-child(odd) td,
+    .table-striped tbody tr:nth-child(odd) th { background-color: rgb(249, 249, 249); }
+
+
+    /* ==|== 480px - Phone Landscape ============================================ */
+    @media only screen and (max-width: 480px) {
+
+    }
+
+    /* ==|== 768px - Phone Landscape | Desktop ======================== */
+    @media only screen and (max-width: 768px) {
+
+    }
+
+    /* ==|== 768px - Tablet Portrait | Desktop ======================== */
+    @media only screen and (min-width: 768px) and (max-width: 980px) {
+
+    }
+
+    /* ==|== 980px - Tablet Landscape | Desktop ================================= */
+    @media only screen and (min-width: 980px) {
+
+    }
+
+    /* ==|== 1200px - Desktop Widescreen ======================================== */
+    @media only screen and (min-width: 1200px) {
+
+    }
+  </style>
+</head>
+
+<body>
+<!-- site header -->
+<header role="banner">
+  <h1>Data-driven jQuery Framework</h1>
+
+  <p class="mar-none">The data-driven framework exposes many of the useful jQuery UI options using the HTML5 data-attribute. This allows you to customize widget instances right from the HTML instead of individual, custom scripts for each instance. It also provides a lot of valuable use cases that aren't provided with jQuery UI and saves you the time from writing them.</p>
+</header><!-- @banner -->
+
+<nav role="navigation">
+  <ul>
+    <li class="active"><a href="#accordion">Accordion</a></li>
+    <li class=""><a href="#autocomplete">Autocomplete</a></li>
+    <li class=""><a href="#button">Button</a></li>
+    <li class=""><a href="#datepicker">Datepicker</a></li>
+    <li class=""><a href="#dialog">Dialog</a></li>
+    <li class=""><a href="#menu">Menu</a></li>
+    <li class=""><a href="#progress-bar">Progress Bar</a></li>
+    <li class=""><a href="#responsive-table">Responsive Table</a></li>
+    <li class=""><a href="#slider">Slider</a></li>
+    <li class=""><a href="#spinner">Spinner</a></li>
+    <li class=""><a href="#tabs">Tabs</a></li>
+    <li class=""><a href="#tooltip">Tooltip</a></li>
+  </ul>
+</nav><!-- @navigation -->
+
+<!-- content -->
+<article role="main" class="clearfix">
+
+  <section id="accordion">
+    <header class="rule">
+      <h1>Accordions</h1>
+    </header>
+
+    <p>Displays collapsible content panels for presenting information in a limited amount of space.</p>
+
+
+    <h2>API</h2>
+
+    <table class="table">
+      <caption>
+        <h2 class="rule-dashed">Accordion Options
+          <small>using the Data-Driven plugin</small>
+        </h2>
+      </caption>
+
+      <thead>
+      <tr>
+        <th style="width: 226px;">Attribute</th>
+        <th>Value</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>
+          <h3>data-role</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+        <td>
+          <dl>
+            <dt><code>accordion</code></dt>
+            <dd>
+              <p>Creates the accordion.</p>
+
+              <div data-role="accordion">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibh.</p>
+                  </div>
+                </section>
+              </div><!-- .accordion -->
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>class</h3></td>
+        <td>
+          <dl>
+            <dt><code>disabled</code></dt>
+            <dd>
+              <p>Disables the accordion.</p>
+
+              <div data-role="accordion" class="disabled">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibh.</p>
+                  </div>
+                </section>
+              </div>
+              <!-- .accordion -->
+            </dd>
+
+            <dt><code>unstyled</code></dt>
+            <dd>
+              <p>Alternative design to the default accordion. Displays content in a more simplistic manner.</p>
+
+              <div data-role="accordion" class="unstyled">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibh.</p>
+                  </div>
+                </section>
+              </div>
+              <!-- .accordion -->
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-accordion-active</h3></td>
+        <td>
+          <dl>
+            <dt><em>Boolean</em></dt>
+            <dd>
+              <p>Collapses all panels.</p>
+
+              <div data-role="accordion" data-ui-accordion-active="true">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibh.</p>
+                  </div>
+                </section>
+              </div>
+              <!-- .accordion -->
+            </dd>
+
+            <dt><em>Integer</em></dt>
+            <dd>
+              <p>The zero-based index of the panel that is active (open). A negative value selects panels going backward from the last
+                 panel.</p>
+
+              <div data-role="accordion" data-ui-accordion-active="1">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibh.</p>
+                  </div>
+                </section>
+              </div>
+              <!-- .accordion -->
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-accordion-activate</h3></td>
+        <td>
+          <dl>
+            <dt><em>Selector</em></dt>
+            <dd>
+              <p>Selector for the trigger element you want to activate.</p>
+
+              <!---data-ui-accordion-activate(selector) Accordion---->
+              <div data-role="accordion" data-ui-accordion-activate="#accord2">
+                <section>
+                  <h3 id="accord1"><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3 id="accord2"><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibh.</p>
+                  </div>
+                </section>
+              </div>
+              <!-- .accordion -->
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-accordion-animate</h3></td>
+        <td>
+          <dl>
+            <dt><em>Boolean</em></dt>
+            <dd>
+              <p>Enables (<code>true</code> - default) / disables (<code>false</code>) accordion animations.</p>
+
+              <!---data-ui-accordion-animated(boolean) Accordion---->
+              <div data-role="accordion" data-ui-accordion-animate="false">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibh.</p>
+                  </div>
+                </section>
+              </div>
+              <!-- .accordion -->
+            </dd>
+
+            <dt><em>String</em></dt>
+            <dd>
+              <p>List of <a href="http://api.jqueryui.com/easings/">easings</a>.</p>
+
+              <!---data-ui-accordion-animated(string) Accordion---->
+              <div data-role="accordion" data-ui-accordion-animate="easeOutBounce">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibh.</p>
+                  </div>
+                </section>
+              </div>
+              <!-- .accordion -->
+
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-accordion-collapsible</h3></td>
+        <td>
+          <dl>
+            <dt><em>Boolean</em></dt>
+            <dd>
+              <p>Whether all the sections can be closed at once. Allows collapsing the active section by the triggering <code>event
+              </code> (<code>data-ui-accordion-event</code>).
+              </p>
+
+              <!---data-ui-accordion-collapsible(boolean) Accordion---->
+              <div data-role="accordion" data-ui-accordion-collapsible="true" data-ui-event="click">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyr owuiey roiuweyr ouiweyr oweyr owyr
+                       owiuer ypoiweyr oipweyr iwoeyr wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry weiory wepoiry weipory weipory
+                       weiory weoiy rwieoyr weoiyr weioyr wey. Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyr
+                       owuiey roiuweyr ouiweyr oweyr owyr owiuer ypoiweyr oipweyr iwoeyr wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry
+                       weiory wepoiry weipory weipory weiory weoiy rwieoyr weoiyr weioyr wey. </p>
+                  </div>
+                </section>
+              </div>
+              <!-- .accordion -->
+
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-event</h3></td>
+        <td>
+          <dl>
+            <dt><code>click</code> (default), <code>mouseover</code></dt>
+            <dd>
+              <p>The type of event to be used for selecting a section of the accordion.</p>
+
+
+              <!---data-ui-event(event) Accordion---->
+              <div data-role="accordion" data-ui-event="mouseover">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyr owuiey roiuweyr ouiweyr oweyr owyr
+                       owiuer ypoiweyr oipweyr iwoeyr wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry weiory wepoiry weipory weipory
+                       weiory weoiy rwieoyr weoiyr weioyr wey. Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyr
+                       owuiey roiuweyr ouiweyr oweyr owyr owiuer ypoiweyr oipweyr iwoeyr wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry
+                       weiory wepoiry weipory weipory weiory weoiy rwieoyr weoiyr weioyr wey. </p>
+                  </div>
+                </section>
+              </div>
+              <!-- .accordion -->
+
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-accordion-header</h3></td>
+        <td>
+          <dl>
+            <dt><em>jQuery Object</em>, <em>Selector</em></dt>
+            <dd>
+              <p>Selector for the header element.</p>
+
+              <!---data-ui-accordion-header(selector) Accordion---->
+
+              <div data-role="accordion" data-ui-accordion-header="h2">
+                <section>
+                  <h2><a href="#">First</a></h2>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h2><a href="#">Second</a></h2>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyrowyr owiuer ypoiweyr oipweyr iwoeyr
+                       wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry weiory wepoiry weipory weipory weiory weoiy rwieoyr weoiyr.</p>
+                  </div>
+                </section>
+              </div>
+              <!-- .accordion -->
+
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-accordion-heightstyle</h3></td>
+        <td>
+          <dl>
+            <dt><code>auto</code> (default)</dt>
+            <dd>
+              <p>All panels will be set to the height of the tallest panel.</p>
+
+              <div data-role="accordion" data-ui-accordion-heightstyle="auto">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyrowyr owiuer ypoiweyr oipweyr iwoeyr
+                       wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry weiory wepoiry weipory weipory weiory weoiy rwieoyr weoiyr.</p>
+                  </div>
+                </section>
+              </div><!-- .accordion -->
+            </dd>
+
+            <dt><code>content</code></dt>
+            <dd>
+              <p>Each panel will be only as tall as its content.</p>
+
+              <div data-role="accordion" data-ui-accordion-heightstyle="content">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyrowyr owiuer ypoiweyr oipweyr iwoeyr
+                       wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry weiory wepoiry weipory weipory weiory weoiy rwieoyr weoiyr.
+                       Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyrowyr owiuer ypoiweyr oipweyr iwoeyr
+                       wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry weiory wepoiry weipory weipory weiory weoiy rwieoyr weoiyr.</p>
+                  </div>
+                </section>
+              </div><!-- .accordion -->
+            </dd>
+
+            <dt><code>fill</code></dt>
+            <dd>
+              <p>Expand to the available height based on the accordion's parent height.</p>
+
+              <div style="height:200px;">
+                <div data-role="accordion" data-ui-accordion-heightstyle="fill">
+                  <section>
+                    <h3><a href="#">First</a></h3>
+
+                    <div>
+                      <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h3><a href="#">Second</a></h3>
+
+                    <div>
+                      <p>Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyrowyr owiuer ypoiweyr oipweyr iwoeyr
+                         wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry weiory wepoiry weipory weipory weiory weoiy rwieoyr weoiyr.</p>
+                    </div>
+                  </section>
+                </div><!-- .accordion -->
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-icons</h3></td>
+        <td>
+          <dl>
+            <dt><code>false</code></dt>
+            <dd>
+              <p>Set to false to have no icons displayed.</p>
+
+              <div data-role="accordion" data-ui-icons="false">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyrowyr owiuer ypoiweyr oipweyr iwoeyr
+                       wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry weiory wepoiry weipory weipory weiory weoiy rwieoyr weoiyr.</p>
+                  </div>
+                </section>
+              </div><!-- .accordion -->
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-icon-active</h3></td>
+        <td>
+          <dl>
+            <dt><code>ui-icon-<em>name</em></code></dt>
+            <dd>
+              <p>Icons to use for headers, matching a jQuery UI icon class.</p>
+
+              <p class="font-sz-small">NOTE: <em>name</em> should be replaced with the necessary jQuery UI icon class.</p>
+
+              <div data-role="accordion" data-ui-icon-active="ui-icon-circle-triangle-s">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyrowyr owiuer ypoiweyr oipweyr iwoeyr
+                       wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry weiory wepoiry weipory weipory weiory weoiy rwieoyr weoiyr.</p>
+                  </div>
+                </section>
+              </div><!-- .accordion -->
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h3>data-ui-icon-default</h3>
+        </td>
+        <td>
+          <dl>
+            <dt><code>ui-icon-<em>name</em></code></dt>
+            <dd>
+              <p>Icons to use for headers, matching a jQuery UI icon class.</p>
+
+              <p class="font-sz-small">NOTE: <em>name</em> should be replaced with the necessary jQuery UI icon class.</p>
+
+              <div data-role="accordion" data-ui-icon-default="ui-icon-circle-triangle-s">
+                <section>
+                  <h3><a href="#">First</a></h3>
+
+                  <div>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3><a href="#">Second</a></h3>
+
+                  <div>
+                    <p>Phasellus mattis tincidunt nibhhieowr weoiry weioy rwoeiy rwoeiuyr woeiuyrowyr owiuer ypoiweyr oipweyr iwoeyr
+                       wieoyr woieyr iwoeyr ioweyr wioery pweoiyr wepoiry weiory wepoiry weipory weipory weiory weoiy rwieoyr weoiyr.</p>
+                  </div>
+                </section>
+              </div><!-- .accordion -->
+            </dd>
+          </dl>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </section><!-- #accordion -->
+
+
+  <section id="autocomplete">
+    <header class="rule">
+      <h1>Autocomplete</h1>
+    </header>
+
+    <p>Enables users to quickly find and select from a pre-populated list of values as they type, leveraging searching and filtering.</p>
+
+    
+    <h2>API</h2>
+
+    <table class="table table-bordered table-striped">
+      <caption>
+        <h2 class="rule-dashed">Autocomplete Options
+          <small>using the Data-Driven plugin</small>
+        </h2>
+      </caption>
+
+      <thead>
+      <tr>
+        <th style="width: 226px;">Attribute</th>
+        <th>Values</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>
+          <h3>data-role</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+        <td>
+          <dl>
+            <dt><code>autocomplete</code></dt>
+
+            <dd>
+              <p>Creates the autocompleter.</p>
+              <label><input type="text" data-role="autocomplete" data-ui-source='test.geonames'></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h3>data-ui-source</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+        <td>
+          <dl>
+            <dt><em>Array</em></dt>
+            <dd>
+              <p>An array can be used for local data. There are two supported formats:</p>
+
+              <ul>
+                <li>
+                  An array of strings: <code>["Choice1", "Choice2", ... ]</code>
+                  <br>
+                  <label><input type="text" data-role="autocomplete" data-ui-source='["Choice1", "Choice2"]'></label>
+                </li>
+
+                <li>
+                  An array of objects with <code>label</code> and <code>value</code> properties: <code>[ { label: "Choice1", value: "value1" }, ... ]</code>. The label property is displayed in the suggestion menu. The value will be inserted into the input element when a user selects an item. If just one property is specified, it will be used for both, e.g., if you provide only value properties, the value will also be used as the label.
+                  <br>
+                  <label><input type="text" data-role="autocomplete" data-ui-source='[{"label": "Choice1", "value": "value1"}, {"label": "Choice2", "value": "value2"}]'></label>
+                </li>
+              </ul>
+            </dd>
+
+            <dt><em>Function</em></dt>
+            <dd>
+              <p>A callback function provides the most flexibility and can be used to connect any data source to Autocomplete. The callback gets two arguments:</p>
+              <ul>
+                <li>A <code>request</code> object, with a single <code>term</code> property, which refers to the value currently in the text input. For example, if the user enters <code>"new yo"</code> in a city field, the Autocomplete term will equal <code>"new yo"</code>.</li>
+                <li>A <code>response</code> callback, which expects a single argument: the data to suggest to the user. This data should be filtered based on the provided term, and can be in any of the formats described above for simple local data. It's important when providing a custom source callback to handle errors during the request. You must always call the <code>response</code> callback even if you encounter an error. This ensures that the widget always has the correct state.</li>
+              </ul>
+
+              <p>This example calls the global function <code>geonames</code>:</p>
+              <label><input type="text" data-role="autocomplete" data-ui-source="geonames"></label>
+
+              <p>This example calls the namespace function <code>testgeonames</code>:</p>
+              <label><input type="text" data-role="autocomplete" data-ui-source="test.geonames"></label>
+            </dd>
+
+            <dt><em>String</em></dt>
+            <dd>
+              <p>When a string is used, the Autocomplete plugin expects that string to point to a URL resource that will return JSON data. It can be on the same host or on a different one (must provide JSONP). The Autocomplete plugin does not filter the results, instead a query string is added with a <code>term</code> field, which the server-side script should use for filtering the results. For example, if the <code>source</code> option is set to <code>"http://example.com"</code> and the user types <code>foo</code>, a GET request would be made to <code>http://example.com?term=foo</code>. The data itself can be in the same format as the local data described above.</p>
+
+              <p>NOTE: The following example references the source URL <code>js/autocomplete.json</code></p>
+              <label><input type="text" data-role="autocomplete" data-ui-source='autocomplete.json'></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>class</h3></td>
+        <td>
+          <dl>
+            <dt><code>disabled</code></dt>
+            <dd>
+              <p>Disables the autocomplete. (NOTE: This does not disable the textbox)</p>
+              <label><input type="text" data-role="autocomplete" class="disabled" data-ui-source="geonames"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-autocomplete-autofocus</h3></td>
+        <td>
+          <dl>
+            <dt><em>Boolean</em></dt>
+            <dd>
+              <p>If set to true the first item will be automatically focused.</p>
+
+              <!---data-ui-autocomplete-autofocus(boolean) Autocomplete---->
+              <label><input type="text" data-role="autocomplete" data-ui-source="geonames" data-ui-autocomplete-autofocus="true"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-autocomplete-delay</h3></td>
+        <td>
+          <dl>
+            <dt><em>Integer</em></dt>
+            <dd>
+              <p>The delay in milliseconds the Autocomplete waits after a keystroke to activate itself. A
+                                      zero-delay makes sense for local data (more responsive), but can produce a lot of load for remote data, while being less
+                                      responsive.</p>
+
+              <!---data-ui-autocomplete-delay(integer) Autocomplete---->
+              <label><input type="text" data-role="autocomplete" data-ui-source="geonames" data-ui-autocomplete-delay="1035"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-autocomplete-minlength</h3></td>
+        <td>
+          <dl>
+            <dt><em>Integer</em></dt>
+            <dd>
+              <p>The minimum number of characters a user has to type before the Autocomplete activates. Zero is
+                                      useful for local data with just a few items. Should be increased when there are a lot of items, where a single character
+                                      would match a few thousand items.</p>
+
+              <!---data-ui-autocomplete-minlength(integer) Autocomplete---->
+              <label><input type="text" data-role="autocomplete" data-ui-source="geonames" data-ui-autocomplete-minlength="4"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-position-my</h3></td>
+        <td>
+          <dl>
+            <dt><code>"top"</code>, <code>"center"</code>, <code>"bottom"</code>, <code>"left"</code>, <code>"right"</code></dt>
+            <dd>
+              <p>Defines which position on <strong>the element being positioned</strong> to align with the target element: "horizontal
+                 vertical" alignment. A single value such as <code>"right"</code> will default to <code>"right center"</code>, <code>"top"
+                </code> will default to <code>"center top"</code> (following CSS convention).</p>
+
+              <p>Additional reading about <a href="http://api.jqueryui.com/position/">jQuery UI Positioning</a>.</p>
+
+              <!---data-ui-autocomplete-position-my    Autocomplete---->
+              <label><input type="text" data-role="autocomplete" data-ui-source="geonames" data-ui-position-my="left top"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-position-at</h3></td>
+        <td>
+          <dl>
+            <dt><code>"top"</code>, <code>"center"</code>, <code>"bottom"</code>, <code>"left"</code>, <code>"right"</code></dt>
+            <dd>
+              <p>Defines which position on <strong>the element being positioned</strong> to align with the target element: "horizontal
+                 vertical" alignment. A single value such as <code>"right"</code> will default to <code>"right center"</code>, <code>"top"
+                </code> will default to <code>"center top"</code> (following CSS convention).</p>
+
+              <p>Additional reading about <a href="http://api.jqueryui.com/position/">jQuery UI Positioning</a>.</p>
+
+              <!---data-ui-autocomplete-position-at    Autocomplete---->
+              <label><input type="text" data-role="autocomplete" data-ui-source="geonames" data-ui-position-at="right top"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-position-collision</h3></td>
+        <td>
+          <dl>
+            <dt><code>"flip"</code>, <code>"fit"</code>, <code>"fit flip"</code>, <code>"fit none"</code></dt>
+            <dd>
+              <p>When the positioned element overflows the window in some direction, move it to an alternative position. Similar to
+                <code>my</code> and <code>at</code>, this accepts a single value or a pair.</p>
+
+              <p>Additional reading about <a href="http://api.jqueryui.com/position/">jQuery UI Positioning</a>.</p>
+
+              <!---data-ui-autocomplete-position-collision    Autocomplete---->
+              <label><input type="text" data-role="autocomplete" data-ui-source="geonames" data-ui-position-at="right top" data-ui-position-collision="fit flip"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </section><!-- #autocomplete -->
+
+
+  <section id="button">
+    <header>
+      <h1>Buttons &amp; Buttonsets</h1>
+    </header>
+
+    <p>Enhances standard form elements like buttons, inputs and anchors to themeable buttons with appropriate hover and active styles. As a convention, buttons should only be used for actions while hyperlinks are to be used for objects. For instance, "Download" should be a button while "recent activity" should be a link.</p>
+
+    <h2>API</h2>
+
+    <table class="table table-striped mar-t-default">
+      <caption>
+        <h2 class="rule-dashed">Button Options &amp; States
+          <small>using the Data-Driven plugin</small>
+        </h2>
+      </caption>
+
+      <thead>
+      <tr>
+        <th style="width: 225px;">Attribute</th>
+        <th>Values</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>
+          <h3>data-role</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+        <td>
+          <dl>
+            <dt><code>button</code></dt>
+            <dd>
+              <p>Creates a button using standard form elements like buttons, inputs and anchors.</p>
+
+              <a href="#" data-role="button">Button</a>
+            </dd>
+
+            <dt><code>buttonset</code></dt>
+            <dd>
+              <p>Creates a buttonset using standard form elements like radio buttons and checkboxes and their corresponding labels.</p>
+
+              <div data-role="buttonset">
+                <input type="radio" id="example-radio1" name="example-radio">
+                <label for="example-radio1">Option 1</label>
+
+                <input type="radio" id="example-radio2" name="example-radio" checked="checked">
+                <label for="example-radio2">Option 2</label>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>class</h3></td>
+        <td>
+          <dl>
+            <dt><code>disabled</code></dt>
+            <dd>
+              <p>Changes button/buttonset state to <code>disabled</code></p>
+
+              <!--data-role="button" class="disabled"-->
+              <h4>Button</h4>
+              <a href="#" data-role="button" class="disabled">Button</a>
+
+              <h4>Buttonset</h4>
+              <div data-role="buttonset" class="disabled">
+                <input type="radio" id="example-disabled-radio1" name="example-disabled-radio">
+                <label for="example-disabled-radio1">Option 1</label>
+
+                <input type="radio" id="example-disabled-radio2" name="example-disabled-radio" checked="checked">
+                <label for="example-disabled-radio2">Option 2</label>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h3>data-ui-icon-primary</h3>
+
+          <p>
+            <small class="text-lite">NOTE: This does not work on <em>buttons</em> created from an <code>&lt;input&gt;</code>. To use this on a <em>buttonset</em>, the attribute should be placed on the respective <code>&lt;input&gt;</code> element.</small>
+          </p>
+        </td>
+        <td>
+          <dl>
+            <dt><code>ui-icon-<em>name</em></code></dt>
+            <dd>
+              <p>Adds the specified jQuery UI icon <strong>before</strong> the button text.</p>
+
+              <p class="font-sz-small">NOTE: <em>name</em> should be replaced with the necessary jQuery UI icon class.</p>
+
+              <h4>Button</h4>
+              <a href="#" data-role="button" data-ui-icon-primary="ui-icon-close">Button</a>
+
+              <h4>Buttonset</h4>
+              <div data-role="buttonset">
+                <input type="radio" id="example-primary-icon-radio1" name="example-primary-icon-radio" data-ui-icon-primary="ui-icon-plusthick">
+                <label for="example-primary-icon-radio1">Option 1</label>
+
+                <input type="radio" id="example-primary-icon-radio2" name="example-primary-icon-radio" data-ui-icon-primary="ui-icon-minusthick" checked="checked">
+                <label for="example-primary-icon-radio2">Option 2</label>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h3>data-ui-icon-secondary</h3>
+
+          <p>
+            <small class="text-lite">NOTE: This does not work on <em>buttons</em> created from an <code>&lt;input&gt;</code>. To use this on a <em>buttonset</em>, the attribute should be placed on the respective <code>&lt;input&gt;</code> element.</small>
+          </p>
+        </td>
+        <td>
+          <dl>
+            <dt><code>ui-icon-<em>name</em></code></dt>
+            <dd>
+              <p>Adds the specified jQuery UI icon <strong>after</strong> the button text.</p>
+
+              <p class="font-sz-small">NOTE: <em>name</em> should be replaced with the necessary jQuery UI icon class.</p>
+
+              <h4>Button</h4>
+              <a href="#" data-role="button" data-ui-icon-secondary="ui-icon-close">Button</a>
+
+              <h4>Buttonset</h4>
+              <div data-role="buttonset">
+                <input type="radio" id="example-secondary-icon-radio1" name="example-secondary-icon-radio" data-ui-icon-secondary="ui-icon-plusthick">
+                <label for="example-secondary-icon-radio1">Option 1</label>
+
+                <input type="radio" id="example-secondary-icon-radio2" name="example-secondary-icon-radio" data-ui-icon-secondary="ui-icon-minusthick" checked="checked">
+                <label for="example-secondary-icon-radio2">Option 2</label>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-loading-text</h3></td>
+        <td>
+          <dl>
+            <dt><em>String</em></dt>
+
+            <dd>
+              <p>Changes button/buttonset state to <code>disabled</code> and displays the defined loading text.</p>
+
+              <!--data-ui-loading-text (string)-->
+              <h4>Button</h4>
+              <button data-role="button" type="submit" data-ui-loading-text="Submitting...">Submit</button>
+
+              <h4>Buttonset</h4>
+              <div data-role="buttonset" data-ui-loading-text="Processing...">
+                <input type="radio" id="example-loading-radio1" name="example-loading-radio">
+                <label for="example-loading-radio1">Option 1</label>
+
+                <input type="radio" id="example-loading-radio2" name="example-loading-radio" checked="checked">
+                <label for="example-loading-radio2">Option 2</label>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </section><!-- #button -->
+
+
+  <section id="datepicker">
+    <header class="rule">
+      <h1>Datepickers</h1>
+    </header>
+
+    <p>Select a date from a popup or inline calendar.</p>
+
+
+    <h2>API</h2>
+
+    <table class="table table-striped">
+      <caption>
+        <h2 class="rule-dashed">Datepicker Options
+          <small>using the Data-Driven plugin</small>
+        </h2>
+      </caption>
+
+      <thead>
+      <tr>
+        <th style="width: 285px;">Attribute</th>
+        <th>Values</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>
+          <h3>data-role</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+        <td>
+          <dl>
+            <dt><code>datepicker</code></dt>
+
+            <dd>
+              <p>Turns an <code>&lt;input&gt;</code> into a datepicker.</p>
+              <label><input data-role="datepicker" type="text"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>class</h3></td>
+        <td>
+          <dl>
+            <dt><code>disabled</code></dt>
+
+            <dd>
+              <p>Disables the datepicker</p>
+              <label><input data-role="datepicker" class="disabled" type="text"/></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-changemonth</h3></td>
+        <td>
+          <dl>
+            <dt><em>Boolean</em></dt>
+            <dd>
+              <p>If set to true, dropdown is displayed to change the month</p>
+
+              <!--data-ui-datepicker-changemonth (boolean)-->
+              <label><input data-role="datepicker" data-ui-datepicker-changemonth="true" type="text"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-defaultdate</h3></td>
+        <td>
+          <dl>
+            <dt><em>Date</em></dt>
+            <dd>
+              <p>A date string containing the minimum date. For example, "01/01/2013" would set the min date to January 1, 2013.</p>
+
+              <!--data-ui-datepicker-mindate (date)-->
+              <label><input data-role="datepicker" data-ui-datepicker-defaultdate="01/01/2013" type="text"></label>
+            </dd>
+
+            <dt><em>Number</em></dt>
+            <dd>
+              <p>A number of days from today. For example 2 represents two days from today and -1 represents yesterday.</p>
+
+              <!--data-ui-datepicker-defaultdate (integer)-->
+              <label><input data-role="datepicker" data-ui-datepicker-defaultdate="2" type="text"></label>
+            </dd>
+
+            <dt><em>Relative Date</em></dt>
+            <dd>
+              <p>Relative dates must contain value and period pairs; valid periods are <code>"y"</code> for years, <code>"m"</code> for months, <code>"w"</code> for weeks, and <code>"d"</code> for days. For example, <code>"+1m +7d"</code> represents one month and seven days from today.</p>
+
+              <!--data-ui-datepicker-mindate (string)-->
+              <label><input data-role="datepicker" data-ui-datepicker-defaultdate="+1m +7d" type="text"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-maxdate</h3></td>
+        <td>
+          <p>The maximum selectable date. Consists of comma delimited <em>Date Value</em> and optional <em>Restricted Date</em> parameter.</p>
+
+          <h4>Date Value</h4>
+
+          <dl>
+            <dt><em>Date</em></dt>
+            <dd>
+              <p>A date string containing the maximum date. For example, "01/01/2013" would set the max date to January 1, 2013.</p>
+
+              <!--data-ui-datepicker-maxdate (date)-->
+              <label><input data-role="datepicker" data-ui-datepicker-maxdate="01/01/2013" type="text"></label>
+            </dd>
+
+            <dt><em>Integer</em></dt>
+            <dd>
+              <p>A number of days from today. For example <code>2</code> represents two days from today and <code> -1</code> represents yesterday.</p>
+
+              <!--data-ui-datepicker-maxdate (integer)-->
+              <label><input data-role="datepicker" data-ui-datepicker-maxdate="2" type="text"></label>
+            </dd>
+
+            <dt><em>Relative Date</em></dt>
+            <dd>
+              <p>Relative dates must contain value and period pairs; valid periods are <code>"y"</code> for years, <code>"m"</code> for months, <code>"w"</code> for weeks, and <code>"d"</code> for days. For example, <code>"+1m +7d"</code> represents one month and seven days from today.</p>
+
+              <!--data-ui-datepicker-maxdate (string)-->
+              <label><input data-role="datepicker" data-ui-datepicker-maxdate="+1m +7d" type="text"></label>
+            </dd>
+          </dl>
+
+
+          <h4 class="mar-t-double">Restricted Days (optional)</h4>
+          <p><strong>NOTE:</strong> The restricted days parameter only works with an <em>Integer</em> <strong>Date Value</strong>. It does not work with the <em>Date</em> or <em>Relative Date</em> variations.</p>
+
+          <dl>
+            <dt><code>true</code></dt>
+            <dd>
+              <p>Does not include days that are not selectable in your max day count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a max date value of 7 will actually be 9 days from today, since weekends are disabled and would not be counted.</p>
+
+              <!--data-ui-datepicker-maxdate (true)-->
+              <label><input data-role="datepicker" data-ui-datepicker-maxdate="7,true" data-ui-datepicker-noweekends="true" type="text"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-maxdate-control</h3></td>
+        <td>
+          <p>The maximum selectable date based on another datepicker field.</p>
+
+          <dl>
+            <dt><em>Selector</em></dt>
+            <dd>
+              <p>Selector for the datepicker element you want to get the maxdate from.</p>
+
+              <!--data-ui-datepicker-maxdate-control (selector)-->
+              <label><input data-role="datepicker" data-ui-datepicker-maxdate-control="#dp-max-1" type="text"></label>
+              <label><input data-role="datepicker" id="dp-max-1" type="text"> <span class="font-sz-small text-lite">(Set this date first)</span></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-maxdate-control-days</h3></td>
+        <td>
+          <p>Requires the use of <code>data-ui-datepicker-maxdate-control</code> and acts as a modifier to increment or decrement the date.  Consists of comma delimited <em>Days</em> and optional <em>Restricted Date</em> parameter.</p>
+
+          <h4>Days</h4>
+          <dl>
+            <dt><em>Integer</em></dt>
+
+            <dd>
+              <p>The number of days to add or subtract from the <em>maxdate control</em> date. For example <code>-2</code> represents two days prior to the datepicker control date and <code>2</code> represents 2 days after the datepicker control date.</p>
+
+              <label><input data-role="datepicker" data-ui-datepicker-maxdate-control="#dp-max-days-1" data-ui-datepicker-maxdate-control-days="-2" type="text"></label>
+              <label><input data-role="datepicker" id="dp-max-days-1" type="text"> <span class="font-sz-small text-lite">(Set this date first)</span></label>
+            </dd>
+          </dl>
+
+          <h4 class="mar-t-double">Restricted Days (optional)</h4>
+
+          <dl>
+            <dt><code>true</code></dt>
+            <dd>
+              <p>Does not include days that are not selectable in your maxdate-control-days count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a maxdate-control-day value of -7 will actually be -9 days prior to the control, since weekends are disabled and would not be counted.</p>
+
+              <label><input data-role="datepicker" data-ui-datepicker-maxdate-control="#dp-max-days-restrict-1" data-ui-datepicker-maxdate-control-days="-7,true" data-ui-datepicker-noweekends="true" type="text"></label>
+              <label><input data-role="datepicker" id="dp-max-days-restrict-1" type="text"> <span class="font-sz-small text-lite">(Set this date first)</span></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-mindate</h3></td>
+        <td>
+          <p>The minimum selectable date. Consists of comma delimited <em>Date Value</em> and optional <em>Restricted Date</em> parameter.</p>
+
+          <h4>Date Value</h4>
+
+          <dl>
+            <dt><em>Date</em></dt>
+            <dd>
+              <p>A date string containing the minimum date. For example, "01/01/2013" would set the min date to January 1, 2013.</p>
+
+              <!--data-ui-datepicker-mindate (date)-->
+              <label><input data-role="datepicker" data-ui-datepicker-mindate="01/01/2013" data-ui-datepicker-defaultdate="01/01/2013" type="text"></label>
+            </dd>
+
+            <dt><em>Integer</em></dt>
+            <dd>
+              <p>A number of days from today. For example <code>2</code> represents two days from today and <code> -1</code> represents yesterday.</p>
+
+              <!--data-ui-datepicker-mindate (integer)-->
+              <label><input data-role="datepicker" data-ui-datepicker-mindate="-2" type="text"></label>
+            </dd>
+
+            <dt><em>Relative Date</em></dt>
+            <dd>
+              <p>Relative dates must contain value and period pairs; valid periods are <code>"y"</code> for years, <code>"m"</code> for months, <code>"w"</code> for weeks, and <code>"d"</code> for days. For example, <code>"+1m +7d"</code> represents one month and seven days from today.</p>
+
+              <!--data-ui-datepicker-mindate (string)-->
+              <label><input data-role="datepicker" data-ui-datepicker-mindate="+1m +7d" type="text"></label>
+            </dd>
+          </dl>
+
+
+          <h4 class="mar-t-double">Restricted Days (optional)</h4>
+          <p><strong>NOTE:</strong> The restricted days parameter only works with an <em>Integer</em> <strong>Date Value</strong>. It does not work with the <em>Date</em> or <em>Relative Date</em> variations.</p>
+
+          <dl>
+            <dt><code>true</code></dt>
+            <dd>
+              <p>Does not include days that are not selectable in your min day count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a min date value of 7 will actually be 9 days from today, since weekends are disabled and would not be counted.</p>
+
+              <!--data-ui-datepicker-mindate (true)-->
+              <label><input data-role="datepicker" data-ui-datepicker-mindate="7,true" data-ui-datepicker-noweekends="true" type="text"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-mindate-control</h3></td>
+        <td>
+          <p>The minimum selectable date based on another datepicker field.</p>
+
+          <dl>
+            <dt><em>Selector</em></dt>
+            <dd>
+              <p>Selector for the datepicker element you want to get the mindate from.</p>
+
+              <!--data-ui-datepicker-mindate-control (selector)-->
+              <label><input data-role="datepicker" id="dp-min-1" type="text"> <span class="font-sz-small text-lite">(Set this date first)</span></label>
+              <label><input data-role="datepicker" data-ui-datepicker-mindate-control="#dp-min-1" type="text"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-mindate-control-days</h3></td>
+        <td>
+          <p>Requires the use of <code>data-ui-datepicker-mindate-control</code> and acts as a modifier to increment or decrement the date.  Consists of comma delimited <em>Days</em> and optional <em>Restricted Date</em> parameter.</p>
+
+          <h4>Days</h4>
+          <dl>
+            <dt><em>Integer</em></dt>
+
+            <dd>
+              <p>The number of days to add or subtract from the <em>mindate control</em> date. For example <code>2</code> represents two days after the datepicker control date and <code>-2</code> represents 2 days prior to the datepicker control date.</p>
+
+              <label><input data-role="datepicker" id="dp-min-days-1" type="text"> <span class="font-sz-small text-lite">(Set this date first)</span></label>
+              <label><input data-role="datepicker" data-ui-datepicker-mindate-control="#dp-min-days-1" data-ui-datepicker-mindate-control-days="2" type="text"></label>
+            </dd>
+          </dl>
+
+          <h4 class="mar-t-double">Restricted Days (optional)</h4>
+
+          <dl>
+            <dt><code>true</code></dt>
+            <dd>
+              <p>Does not include days that are not selectable in your mindate-control-days count. For example, if you have <code>data-ui-datepicker-noweekends="true"</code> set, a mindate-control-day value of 7 will actually be 9 days from the control, since weekends are disabled and would not be counted.</p>
+
+              <label><input data-role="datepicker" id="dp-min-days-restrict-1" type="text"> <span class="font-sz-small text-lite">(Set this date first)</span></label>
+              <label><input data-role="datepicker" data-ui-datepicker-mindate-control="#dp-min-days-restrict-1" data-ui-datepicker-mindate-control-days="7,true" data-ui-datepicker-noweekends="true" type="text"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-nonbusinessdays</h3></td>
+        <td>
+          <dl>
+            <dt><em>Date String</em></dt>
+            <dd>
+              <p>Comma delimited string of dates in <code>mm/dd/yyyy</code> format. For example, if you wanted to disable May 15 and May 22 you would use <code>05/15/2013,05/22/2013</code></p>
+
+              <label><input data-role="datepicker" data-ui-datepicker-nonbusinessdays="05/15/2013,05/22/2013" data-ui-datepicker-maxdate="05/31/2013" type="text"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-noweekends</h3></td>
+        <td>
+          <dl>
+            <dt><em>Boolean</em></dt>
+            <dd>
+              <p>Disables weekends so they are not selectable.</p>
+
+              <label><input data-role="datepicker" data-ui-datepicker-noweekends="true" type="text"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-numberofmonths</h3></td>
+        <td>
+          <p>The number of months to show at once.</p>
+          <dl>
+            <dt><em>Number</em></dt>
+            <dd>
+              <p>The number of months to display in a single row.</p>
+
+              <!--data-ui-datepicker-numberofmonths (number)-->
+              <label><input data-role="datepicker" data-ui-datepicker-numberofmonths="3" type="text"></label>
+            </dd>
+
+            <dt><em>Array</em></dt>
+            <dd>
+              <p>An array defining the number of rows and columns to display.</p>
+
+              <!--data-ui-datepicker-numberofmonths (array)-->
+              <label><input data-role="datepicker" data-ui-datepicker-numberofmonths="[2,3]" type="text"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-datepicker-showbuttonpanel</h3></td>
+        <td>
+          <p>Whether to show the button panel.</p>
+          <dl>
+            <dt><code>true</code></dt>
+            <dd>
+              <p>Initialize the datepicker with the showButtonPanel option specified.</p>
+
+              <!--data-ui-datepicker-numberofmonths (number)-->
+              <label><input data-role="datepicker" data-ui-datepicker-showbuttonpanel="true" type="text"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </section><!-- #datepickers -->
+
+
+  <section id="dialog">
+    <header class="rule">
+      <h1>Dialogs</h1>
+    </header>
+
+    <p>Open content in an interactive overlay.</p>
+
+    <h2>API</h2>
+
+    <table class="table table-bordered table-striped">
+      <caption>
+        <h3 class="rule-dashed">Dialog Options
+          <small>using the Data-Driven plugin</small>
+        </h3>
+      </caption>
+
+      <thead>
+      <tr>
+        <th style="width: 285px;">Attribute</th>
+        <th>Values</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>
+          <h3>data-role</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+
+        <td>
+          <dl>
+            <dt><code>dialog</code></dt>
+            <dd>
+              <p>Will initialize a dialog instance. A dialog is a floating window that contains a title bar and a content area.</p>
+
+              <a href="#id1" data-role="button">Dialog</a>
+
+              <div id="id1" data-role="dialog" data-ui-trigger="[href=#id1]">
+                This is a dialog without an overlay
+              </div>
+            </dd>
+
+            <dt><code>modal</code></dt>
+            <dd>
+              <p>The dialog will have modal behavior; other items on the page will be disabled (i.e. cannot be interacted with). Modal dialogs create an overlay below the dialog but above other page elements.</p>
+
+              <a href="#modal-id1" data-role="button">Modal</a>
+
+              <div id="modal-id1" data-role="modal" data-ui-trigger="[href=#modal-id1]">
+                This is a dialog without an overlay
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-autoopen</h3></td>
+        <td>
+          <dl>
+            <dt><code>true</code></dt>
+            <dd>
+              <p>Dialog will open automatically when dialog is created.</p>
+
+              <p>NOTE: Need to write a test that creates the dialog to verify it opens. Do NOT want this to happen on page load.</p>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-escape</h3></td>
+        <td>
+          <dl>
+            <dt><code>false</code></dt>
+            <dd>
+              <p>Specifies whether the dialog should close when it has focus and the user presses the escape (ESC) key.</p>
+
+              <!--data-ui-dialog-escape (boolean)-->
+              <a href="#id5" data-role="button">Dialog</a>
+
+              <div id="id5" data-role="dialog" data-ui-trigger="[href=#id5]" data-ui-dialog-escape="false">
+                This is a dialog with data attribute "data-ui-dialog-escape"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-closetext</h3></td>
+        <td>
+          <dl>
+            <dt><em>String</em></dt>
+            <dd>
+              <p>Specifies the text for the close button. Note that the close text is visibly hidden when using a standard theme.</p>
+
+              <!--data-ui-dialog-closetext (string)-->
+              <a href="#id6" data-role="button">Dialog</a>
+
+              <div id="id6" data-role="dialog" data-ui-trigger="[href=#id6]" data-ui-dialog-closetext="Close Me">
+                This is a dialog with data attribute <code>data-ui-dialog-closetext</code>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-class</h3></td>
+        <td>
+          <dl>
+            <dt><em>String</em></dt>
+            <dd>
+              <p>The specified class name(s) will be added to the dialog, for additional theming.</p>
+
+              <!--data-ui-dialog-class (string)-->
+              <a href="#id7" data-role="button">Dialog</a>
+
+              <div id="id7" data-role="dialog" data-ui-trigger="[href=#id7]" data-ui-dialog-class="text-strong">
+                This is a dialog with data attribute "data-ui-dialog-class"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-draggable</h3></td>
+        <td>
+          <dl>
+            <dt><code>false</code></dt>
+            <dd>
+              <p>If set to false, the dialog will not be draggable will be draggable by the titlebar.</p>
+
+              <!--data-ui-dialog-draggable (boolean)-->
+              <a href="#id8" data-role="button">Dialog</a>
+
+              <div id="id8" data-role="dialog" data-ui-trigger="[href=#id8]" data-ui-dialog-draggable="false">
+                This is a dialog with data attribute "data-ui-dialog-draggable"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-height</h3></td>
+        <td>
+          <dl>
+            <dt><em>Number</em></dt>
+            <dd>
+              <p>The height of the dialog, in pixels. Specifying 'auto' is also supported to make the dialog adjust based on its content.</p>
+
+              <!--data-ui-dialog-height (Number)-->
+              <a href="#id9" data-role="button">Dialog</a>
+
+              <div id="id9" data-role="dialog" data-ui-trigger="[href=#id9]" data-ui-dialog-height="80">
+                This is a dialog with data attribute "data-ui-dialog-height"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-maxheight</h3></td>
+        <td>
+          <dl>
+            <dt><em>Number</em></dt>
+            <dd>
+              <p>The maximum height to which the dialog can be resized, in pixels.</p>
+
+              <!--data-ui-dialog-maxheight (Number)-->
+              <a href="#id10" data-role="button">Dialog</a>
+
+              <div id="id10" data-role="dialog" data-ui-trigger="[href=#id10]" data-ui-dialog-maxheight="180" data-ui-dialog-minheight="80" data-ui-dialog-resizable="true">
+                This is a dialog with data attribute "data-ui-dialog-maxheight"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-maxwidth</h3></td>
+        <td>
+          <dl>
+            <dt><em>Number</em></dt>
+            <dd>
+              <p>The maximum width to which the dialog can be resized, in pixels.</p>
+
+              <!--data-ui-dialog-maxwidth (Number)-->
+              <a href="#id16" data-role="button">Dialog</a>
+
+              <div id="id16" data-role="dialog" data-ui-trigger="[href=#id16]" data-ui-dialog-maxwidth="400" data-ui-dialog-minwidth="200"
+                   data-ui-dialog-resizable="true">
+                This is a dialog with data attribute "data-ui-dialog-maxwidth"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-minheight</h3></td>
+        <td>
+          <dl>
+            <dt><em>Number</em></dt>
+            <dd>
+              <p>The minimum height to which the dialog can be resized, in pixels.</p>
+
+              <!--data-ui-dialog-minheight (Number)-->
+              <a href="#id11" data-role="button">Dialog</a>
+
+              <div id="id11" data-role="dialog" data-ui-trigger="[href=#id11]" data-ui-dialog-maxheight="180" data-ui-dialog-minheight="80" data-ui-dialog-resizable="true">
+                This is a dialog with data attribute "data-ui-dialog-maxheight"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-minwidth</h3></td>
+        <td>
+          <dl>
+            <dt><em>Number</em></dt>
+            <dd>
+              <p>The minimum width to which the dialog can be resized, in pixels.</p>
+
+              <!--data-ui-dialog-minwidth (Number)-->
+              <a href="#id17" data-role="button">Dialog</a>
+
+              <div id="id17" data-role="dialog" data-ui-trigger="[href=#id17]" data-ui-dialog-minwidth="200" data-ui-dialog-maxwidth="400"
+                   data-ui-dialog-resizable="true">
+                This is a dialog with data attribute "data-ui-dialog-minwidth"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-resizable</h3></td>
+        <td>
+          <dl>
+            <dt><code>false</code></dt>
+            <dd>
+              <p>If set to false, the dialog will not be resizable.</p>
+
+              <!--data-ui-dialog-resizable (boolean)-->
+              <a href="#id12" data-role="button">Dialog</a>
+
+              <div id="id12" data-role="dialog" data-ui-trigger="[href=#id12]" data-ui-dialog-resizable="false">
+                This is a dialog with data attribute "data-ui-dialog-resizable"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-dialog-width</h3></td>
+        <td>
+          <dl>
+            <dt><em>Number</em></dt>
+            <dd>
+              <p>The width of the dialog, in pixels.</p>
+
+              <!--data-ui-dialog-width (Number)-->
+              <a href="#id15" data-role="button">Dialog</a>
+
+              <div id="id15" data-role="dialog" data-ui-trigger="[href=#id15]" data-ui-dialog-width="200">
+                This is a dialog with data attribute "data-ui-dialog-width"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-event</h3></td>
+        <td>
+          <dl>
+            <dt><code>click</code> (default), <code>mouseover</code></dt>
+            <dd>
+              <p>The type of event to be used for triggering the dialog.</p>
+
+              <!--data-ui-event (event)-->
+              <a href="#id18" data-role="button">Dialog</a>
+
+              <div id="id18" data-role="dialog" data-ui-trigger="[href=#id18]" data-ui-event="mouseover">
+                This is a dialog with data attribute "data-ui-event"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-trigger</h3></td>
+        <td>
+          <dl>
+            <dt><em>Selector</em></dt>
+            <dd>
+              <p>Selector of the element used to display the dialog.</p>
+
+              <!--data-ui-trigger (selector)-->
+              <a href="#id19" data-role="button">Dialog</a>
+
+              <div id="id19" data-role="dialog" data-ui-trigger="[href=#id19]">
+                This is a dialog with data attribute "data-ui-trigger"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-trigger-prevent-default</h3></td>
+        <td>
+          <dl>
+            <dt><code>false</code></dt>
+            <dd>
+              <p>By default, the <code>data-ui-trigger</code> default action is prevented. To allow the element's default event action to occur, set it to <code>false</code>.</p>
+
+              <!--data-ui-trigger-prevent-default (boolean)-->
+              <a href="#id20" data-role="button">Dialog</a>
+
+              <div id="id20" data-role="dialog" data-ui-trigger="[href=#id20]" data-ui-trigger-prevent-default="false">
+                This is a dialog with data attribute "data-ui-trigger-prevent-default"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-trigger-delegate</h3></td>
+        <td>
+          <dl>
+            <dt><em>Selector</em></dt>
+            <dd>
+              <p>Requires <code>data-ui-trigger</code>. Provided selector acts as the event handler and is delegated to this element which triggers the dialog for any elements that match the <code>data-ui-trigger</code> selector.</p>
+
+              <!--data-ui-trigger-delegate (selector)-->
+              <div id="box">
+                <a href="#id21" data-role="button">Dialog</a>
+
+                <div id="id21" data-role="dialog" data-ui-trigger="[href=#id21]" data-ui-trigger-delegate="#box">
+                  This is a dialog with data attribute "data-ui-trigger-delegate"
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>title</h3></td>
+        <td>
+          <dl>
+            <dt><em>String</em></dt>
+            <dd>
+              <p>Specifies the title of the dialog. Any valid HTML may be set as the title. The title can also be specified by the title attribute on the dialog source element.</p>
+
+              <!--data-ui-dialog-title (string)-->
+              <a href="#id13" data-role="button">Dialog</a>
+
+              <div id="id13" data-role="dialog" data-ui-trigger="[href=#id13]" title="Dialog With a Title">
+                This is a dialog with data attribute "data-ui-dialog-title"
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+  </section><!-- #dialogs -->
+
+
+  <section id="menu">
+    <header class="rule">
+      <h1>Menus</h1>
+    </header>
+
+    <p>Themeable menu with mouse and keyboard interactions for navigation.</p>
+
+
+    <h2>API</h2>
+
+    <table class="table table-bordered table-striped">
+      <caption>
+        <h3 class="rule-dashed">Menu Options
+          <small>using the Data-Driven plugin (Coming Soon)</small>
+        </h3>
+      </caption>
+
+      <thead>
+      <tr>
+        <th style="width: 160px;">Attribute</th>
+        <th>Values</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>
+          <h3>data-role</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+
+        <td>
+          <dl>
+            <dt><code>menu</code></dt>
+            <dd>
+              <p>Creates a menu.</p>
+
+              <div class="row">
+                <div class="grid5">
+                  <ul data-role="menu">
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                    <li>
+                      <a href="#">Menu 2 a</a>
+                      <ul>
+                        <li><a href="#">Menu 2 a 1</a></li>
+                        <li><a href="#">Menu 2 a 2</a></li>
+                        <li><a href="#">Menu 2 a 3</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">Menu 3</a>
+                      <ul>
+                        <li>
+                          <a href="#">Menu 3 a</a>
+                          <ul class="nowrap">
+                            <li><a href="#">Menu 3 a 1</a></li>
+                            <li><a href="#">Menu 3 a 2</a></li>
+                            <li><a href="#">Menu 3 a 3</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="#">Menu 3 b</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>class</h3></td>
+        <td>
+          <dl>
+            <dt><code>disabled</code></dt>
+            <dd>
+              <p>Disables the menu.</p>
+
+              <div class="row">
+                <div class="grid5">
+                  <ul data-role="menu" class="disabled">
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                    <li>
+                      <a href="#">Menu 2 a</a>
+                      <ul>
+                        <li><a href="#">Menu 2 a 1</a></li>
+                        <li><a href="#">Menu 2 a 2</a></li>
+                        <li><a href="#">Menu 2 a 3</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">Menu 3</a>
+                      <ul>
+                        <li>
+                          <a href="#">Menu 3 a</a>
+                          <ul class="nowrap">
+                            <li><a href="#">Menu 3 a 1</a></li>
+                            <li><a href="#">Menu 3 a 2</a></li>
+                            <li><a href="#">Menu 3 a 3</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="#">Menu 3 b</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-icon-default</h3></td>
+        <td>
+          <dl>
+            <dt><code>ui-icon-<em>name</em></code></dt>
+            <dd>
+              <p>Icons to use for headers, matching a jQuery UI icon class.</p>
+
+              <p>NOTE: name should be replaced with the necessary jQuery UI icon class.</p>
+
+              <!--data-ui-icon-default (ui-icon-name)-->
+              <div class="row">
+                <div class="grid5">
+                  <ul data-role="menu" data-ui-icon-default="ui-icon-triangle-1-e">
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                    <li>
+                      <a href="#">Menu 2 a</a>
+                      <ul>
+                        <li><a href="#">Menu 2 a 1</a></li>
+                        <li><a href="#">Menu 2 a 2</a></li>
+                        <li><a href="#">Menu 2 a 3</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">Menu 3</a>
+                      <ul>
+                        <li>
+                          <a href="#">Menu 3 a</a>
+                          <ul class="nowrap">
+                            <li><a href="#">Menu 3 a 1</a></li>
+                            <li><a href="#">Menu 3 a 2</a></li>
+                            <li><a href="#">Menu 3 a 3</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="#">Menu 3 b</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-position-my</h3></td>
+        <td>
+          <dl>
+            <dt><code>"top"</code>, <code>"center"</code>, <code>"bottom"</code>, <code>"left"</code>, <code>"right"</code></dt>
+            <dd>
+              <p>Defines which position on <strong>the element being positioned</strong> to align with the target element: "horizontal vertical" alignment. A single value such as <code>"right"</code> will default to <code>"right center"</code>, <code>"top"</code> will default to <code>"center top"</code> (following CSS convention).</p>
+
+              <p>Additional reading about <a href="http://api.jqueryui.com/position/">jQuery UI Positioning</a>.</p>
+
+              <!--data-ui-position-my (string) horizontal-->
+              <div class="row">
+                <div class="grid5">
+                  <ul data-role="menu" data-ui-position-my="left-10">
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                    <li>
+                      <a href="#">Menu 2 a</a>
+                      <ul>
+                        <li><a href="#">Menu 2 a 1</a></li>
+                        <li><a href="#">Menu 2 a 2</a></li>
+                        <li><a href="#">Menu 2 a 3</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">Menu 3</a>
+                      <ul>
+                        <li>
+                          <a href="#">Menu 3 a</a>
+                          <ul class="nowrap">
+                            <li><a href="#">Menu 3 a 1</a></li>
+                            <li><a href="#">Menu 3 a 2</a></li>
+                            <li><a href="#">Menu 3 a 3</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="#">Menu 3 b</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-position-at</h3></td>
+        <td>
+          <dl>
+            <dt><code>"top"</code>, <code>"center"</code>, <code>"bottom"</code>, <code>"left"</code>, <code>"right"</code></dt>
+            <dd>
+              <p>Defines which position on <strong>the element being positioned</strong> to align with the target element: "horizontal vertical" alignment. A single value such as <code>"right"</code> will default to <code>"right center"</code>, <code>"top"</code> will default to <code>"center top"</code> (following CSS convention).</p>
+
+              <p>Additional reading about <a href="http://api.jqueryui.com/position/">jQuery UI Positioning</a>.</p>
+
+              <!--data-ui-position-at (string) horizontal-->
+              <div class="row">
+                <div class="grid5">
+                  <ul data-role="menu" data-ui-position-at="right-5">
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                    <li>
+                      <a href="#">Menu 2 a</a>
+                      <ul>
+                        <li><a href="#">Menu 2 a 1</a></li>
+                        <li><a href="#">Menu 2 a 2</a></li>
+                        <li><a href="#">Menu 2 a 3</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">Menu 3</a>
+                      <ul>
+                        <li>
+                          <a href="#">Menu 3 a</a>
+                          <ul class="nowrap">
+                            <li><a href="#">Menu 3 a 1</a></li>
+                            <li><a href="#">Menu 3 a 2</a></li>
+                            <li><a href="#">Menu 3 a 3</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="#">Menu 3 b</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-aria-role</h3></td>
+        <td>
+          <dl>
+            <dt>ARIA role</dt>
+            <dd>
+              <p>Customize the ARIA roles used for the menu and menu items. The default uses <code>"menuitem"</code></p>
+
+              <!--data-ui-role (ARIA role)-->
+              <div class="row">
+                <div class="grid5">
+                  <ul data-role="menu" data-ui-role="listbox">
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                    <li>
+                      <a href="#">Menu 2 a</a>
+                      <ul>
+                        <li><a href="#">Menu 2 a 1</a></li>
+                        <li><a href="#">Menu 2 a 2</a></li>
+                        <li><a href="#">Menu 2 a 3</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#">Menu 3</a>
+                      <ul>
+                        <li>
+                          <a href="#">Menu 3 a</a>
+                          <ul class="nowrap">
+                            <li><a href="#">Menu 3 a 1</a></li>
+                            <li><a href="#">Menu 3 a 2</a></li>
+                            <li><a href="#">Menu 3 a 3</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="#">Menu 3 b</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+
+  </section><!-- #menus -->
+
+
+  <section id="progress-bar">
+    <header class="rule">
+      <h1>Progress Bars</h1>
+    </header>
+
+    <p>Display status of a determinate or indeterminate process.</p>
+
+    <h2>API</h2>
+
+    <table class="table table-bordered table-striped">
+      <caption>
+        <h3 class="rule-dashed">Progressbar Options
+          <small>using the Data-Driven plugin</small>
+        </h3>
+      </caption>
+
+      <thead>
+      <tr>
+        <th style="width: 235px;">Attribute</th>
+        <th>Values</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>
+          <h3>data-role</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+
+        <td>
+          <dl>
+            <dt><code>progressbar</code></dt>
+            <dd>
+              <p>Creates a progressbar.</p>
+
+              <div data-role="progressbar" data-ui-progressbar-value="50"></div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>class</h3></td>
+        <td>
+          <dl>
+            <dt><code>disabled</code></dt>
+            <dd>
+              <p>Disables the progress bar.</p>
+
+              <div data-role="progressbar" class="disabled" data-ui-progressbar-value="50"></div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-progressbar-value</h3></td>
+        <td>
+          <dl>
+            <dt><em>Number</em></dt>
+            <dd>
+              <p>The value of the progressbar.</p>
+
+              <!--data-ui-progressbar-value (number)-->
+              <div data-role="progressbar" data-ui-progressbar-value="80"></div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </section><!-- #progress-bars -->
+
+
+  <section id="responsive-table">
+    <header class="rule">
+      <h1>Responsive Tables</h1>
+    </header>
+
+    <p>The responsive tables mode selectively hides columns at narrower widths as a sensible default but also offers a menu to let users manually control which columns they want to see. The table works by hiding and showing columns based on two inputs: available screen width or by the user checking and unchecking which columns to display in a column picker popup.</p>
+
+    <h2>API</h2>
+
+    <table class="table table-bordered table-striped">
+      <caption>
+        <h3 class="rule-dashed">Responsive Table Options</h3>
+      </caption>
+
+      <thead>
+      <tr>
+        <th style="width: 235px;">Attribute</th>
+        <th>Values</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>
+          <h3>data-role</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+
+        <td>
+          <dl>
+            <dt><code>table</code></dt>
+            <dd>
+              <p>Creates a responsive table.</p>
+
+              <table class="table" data-role="table">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th data-priority="1">First Name</th>
+                  <th>Last Name</th>
+                  <th data-priority="2">Foo Column</th>
+                  <th data-priority="3">Bar Column</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Cory</td>
+                  <td>Dorning</td>
+                  <td>Foo</td>
+                  <td>Bar</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Brett</td>
+                  <td>Metzger</td>
+                  <td>Some Foo</td>
+                  <td>Some Bar</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Santosh</td>
+                  <td>K</td>
+                  <td>More Foo</td>
+                  <td>More Bar</td>
+                </tr>
+                </tbody>
+              </table>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-button-text</h3></td>
+        <td>
+          <dl>
+            <dt><em>String</em></dt>
+            <dd>
+              <p>The text you want to display on the column selection button. The default value is 'Columns...'</p>
+
+              <table class="table" data-role="table" data-ui-button-text="My Columns...">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th data-priority="1">First Name</th>
+                  <th>Last Name</th>
+                  <th data-priority="2">Foo Column</th>
+                  <th data-priority="3">Bar Column</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Cory</td>
+                  <td>Dorning</td>
+                  <td>Foo</td>
+                  <td>Bar</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Brett</td>
+                  <td>Metzger</td>
+                  <td>Some Foo</td>
+                  <td>Some Bar</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Santosh</td>
+                  <td>K</td>
+                  <td>More Foo</td>
+                  <td>More Bar</td>
+                </tr>
+                </tbody>
+              </table>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h3>data-priority</h3>
+          <p class="font-sz-small text-lite">Required on the <code>&lt;th&gt;</code> elements</p>
+        </td>
+
+        <td>
+          <dl>
+            <dt><em>Integer</em> or <em>String</em></dt>
+            <dd>
+              <p>Used on the table headers of columns you want to toggle. Any table header given a priority will be selectable in the 'Columns...' menu.</p>
+
+              <p>If <code>data-priority</code> is omitted on a table heading, the column will be visible at all widths and won't be available in the menu.</p>
+
+              <p><strong>NOTE:</strong> You may use any priority naming convention and assign as many levels of priority for the columns. The plugin will generate class names based on the values in the data-priority attribute. For example, if a priority of <code>data-priority="critical"</code> is added to the heading, a class of <code>ui-table-priority-critical</code> will be applied to each cell in that column. You can then use this class to set the display of that column in your CSS Media Queries.</p>
+
+              <table class="table" data-role="table">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th data-priority="1">First Name</th>
+                  <th>Last Name</th>
+                  <th data-priority="2">Foo Column</th>
+                  <th data-priority="3">Bar Column</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Cory</td>
+                  <td>Dorning</td>
+                  <td>Foo</td>
+                  <td>Bar</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Brett</td>
+                  <td>Metzger</td>
+                  <td>Some Foo</td>
+                  <td>Some Bar</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Santosh</td>
+                  <td>K</td>
+                  <td>More Foo</td>
+                  <td>More Bar</td>
+                </tr>
+                </tbody>
+              </table>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </section><!-- #responsive-tables -->
+
+
+  <section id="slider">
+    <header class="rule">
+      <h1>Sliders</h1>
+    </header>
+
+    <p>Drag a handle to select a numeric value.</p>
+
+    <h2>API</h2>
+
+    <table class="table table-bordered table-striped">
+      <caption>
+        <h3 class="rule-dashed">Slider Options</h3>
+      </caption>
+
+      <thead>
+        <tr>
+          <th style="width: 235px;">Attribute</th>
+          <th>Values</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            <h3>data-role</h3>
+            <p class="font-sz-small text-lite">Required</p>
+          </td>
+
+          <td>
+            <dl>
+              <dt><code>slider</code></dt>
+              <dd>
+                <p>Creates a slider.</p>
+
+                <div data-role="slider"></div>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>class</h3></td>
+          <td>
+            <dl>
+              <dt><code>disabled</code></dt>
+              <dd>
+                <p>Disables the slider.</p>
+
+                <div data-role="slider" class="disabled" data-ui-slider-value="50"></div>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-slider-animate</h3></td>
+          <td>
+            <dl>
+              <dt><code>true</code></dt>
+              <dd>
+                <p>Whether to slide handle smoothly when user click outside handle on the bar.</p>
+
+                <!--data-ui-slider-animate (boolean)-->
+                <div data-role="slider" data-ui-slider-animate="true"></div>
+              </dd>
+
+              <dt><em>String</em></dt>
+              <dd>
+                <p>Will accept a string representing one of the three predefined speeds ("<code>slow</code>", "<code>normal</code>", or "<code>fast</code>").</p>
+
+                <!--data-ui-slider-animate (string)-->
+                <div data-role="slider" data-ui-slider-animate="fast"></div>
+              </dd>
+
+              <dt><em>Integer</em></dt>
+              <dd>
+                <p>The number of milliseconds to run the animation (e.g. <code>1000</code>).</p>
+
+                <!--data-ui-slider-animate (number)-->
+                <div data-role="slider" data-ui-slider-animate="3000"></div>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-slider-max</h3></td>
+          <td>
+            <dl>
+              <dt><em>Number</em></dt>
+              <dd>
+                <p>The maximum value of the slider (e.g. <code>10</code>).</p>
+
+                <!--data-ui-slider-max (number)-->
+                <div data-role="slider" data-ui-slider-max="10"></div>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-slider-min</h3></td>
+          <td>
+            <dl>
+              <dt><em>Number</em></dt>
+              <dd>
+                <p>The minimum value of the slider (e.g. <code>5</code>).</p>
+
+                <!--data-ui-slider-min (number)-->
+                <div data-role="slider" data-ui-slider-min="5" data-ui-slider-max="10"></div>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-slider-orientation</h3></td>
+          <td>
+            <dl>
+              <dt><code>horizontal</code>, <code>vertical</code></dt>
+              <dd>
+                <p>This option determines whether the slider has the min at the left, the max at the right or the min at the bottom, the max at the top. Possible values: '<code>horizontal</code>', '<code>vertical</code>'.</p>
+
+                <!--data-ui-slider-orientation (horizontal / vertical)-->
+                <div data-role="slider" data-ui-slider-min="5" data-ui-slider-orientation="vertical"></div>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-slider-range</h3></td>
+          <td>
+            <dl>
+              <dt><code>true</code></dt>
+              <dd>
+                <p>The slider will detect if you have two handles and create a styleable range element between these two.</p>
+
+                <!--data-ui-slider-step (number)-->
+                <div data-role="slider" data-ui-slider-values="[25,75]" data-ui-slider-range="true"></div>
+              </dd>
+
+              <dt><code>max</code></dt>
+              <dd>
+                <p>A max range goes from one handle to the slider max.</p>
+
+                <!--data-ui-slider-step (number)-->
+                <div data-role="slider" data-ui-slider-min="0" data-ui-slider-max="100" data-ui-slider-range="max"></div>
+              </dd>
+
+              <dt><code>min</code></dt>
+              <dd>
+                <p>A min range goes from the slider min to one handle.</p>
+
+                <!--data-ui-slider-step (number)-->
+                <div data-role="slider" data-ui-slider-min="0" data-ui-slider-max="100" data-ui-slider-range="min"></div>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-slider-step</h3></td>
+          <td>
+            <dl>
+              <dt><em>Number</em></dt>
+              <dd>
+                <p>Determines the size or amount of each interval or step the slider takes between min and max. The full specified value range of the slider (max - min) needs to be evenly divisible by the step (e.g. <code>10</code>).</p>
+
+                <!--data-ui-slider-step (number)-->
+                <div data-role="slider" data-ui-slider-min="0" data-ui-slider-max="100" data-ui-slider-step="10"></div>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-slider-value</h3></td>
+          <td>
+            <dl>
+              <dt><em>Number</em></dt>
+              <dd>
+                <p>The value of the progressbar.</p>
+
+                <!--data-ui-slider-value (number)-->
+                <div data-role="slider" data-ui-slider-value="45"></div>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-slider-values</h3></td>
+          <td>
+            <dl>
+              <dt><em>Array</em></dt>
+              <dd>
+                <p>This option can be used to specify multiple handles (e.g. <code>[25,75]</code>.</p>
+
+                <!--data-ui-slider-values (number)-->
+                <div data-role="slider" data-ui-slider-values='[25,75]'></div>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </section><!-- #sliders -->
+
+
+  <section id="spinner">
+    <header class="rule">
+      <h1>Spinners</h1>
+    </header>
+
+    <p>Enhance a text input for entering numeric values, with up/down buttons and arrow key handling.</p>
+
+    <h2>API</h2>
+
+    <table class="table table-bordered table-striped">
+      <caption>
+        <h3 class="rule-dashed">Spinner Options
+          <small>using the Data-Driven plugin (Coming Soon)</small>
+        </h3>
+      </caption>
+
+      <thead>
+      <tr>
+        <th style="width: 235px;">Attribute</th>
+        <th>Values</th>
+      </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            <h3>data-role</h3>
+            <p class="font-sz-small text-lite">Required</p>
+          </td>
+
+          <td>
+            <dl>
+              <dt><code>spinner</code></dt>
+              <dd>
+                <p>Creates a spinner.</p>
+
+                <label><input data-role="spinner" name="value"></label>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>class</h3></td>
+          <td>
+            <dl>
+              <dt><code>disabled</code></dt>
+              <dd>
+                <p>Disables the spinner.</p>
+
+                <label><input data-role="spinner" class="disabled" name="value"></label>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-spinner-incremental</h3></td>
+          <td>
+            <dl>
+              <dt><code>false</code></dt>
+              <dd>
+                <p>Controls the number of steps taken when holding down a spin button. Makes all steps equal (as defined by the <code>step</code> option).</p>
+
+                <!--data-ui-spinner-incremental (boolean)-->
+                <label><input data-role="spinner" name="value" data-ui-spinner-incremental="false"></label>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-spinner-max</h3></td>
+          <td>
+            <dl>
+              <dt><em>Number</em></dt>
+              <dd>
+                <p>The maximum allowed value. The element's <code>max</code> attribute is used if it exists and the option is not explicitly set. If <code>null</code>, there is no maximum enforced.</p>
+
+                <!--data-ui-spinner-max (number)-->
+                <label><input data-role="spinner" name="value" data-ui-spinner-max="100"></label>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-spinner-min</h3></td>
+          <td>
+            <dl>
+              <dt><em>Number</em></dt>
+              <dd>
+                <p>The minimum allowed value. The element's <code>min</code> attribute is used if it exists and the option is not explicitly set. If <code>null</code>, there is no minimum enforced.</p>
+
+                <!--data-ui-spinner-min (number)-->
+                <label><input data-role="spinner" name="value" data-ui-spinner-min="100"></label>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-spinner-page</h3></td>
+          <td>
+            <dl>
+              <dt><em>Number</em></dt>
+              <dd>
+                <p>The number of steps to take when paging via the <code>pageUp</code>/<code>pageDown</code> methods.</p>
+
+                <!--data-ui-spinner-page (number)-->
+                <label><input data-role="spinner" name="value" data-ui-spinner-page="10"></label>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-spinner-step</h3></td>
+          <td>
+            <dl>
+              <dt><em>Number</em></dt>
+              <dd>
+                <p>The size of the step to take when spinning via buttons or via the <code>stepUp()</code>/<code>stepDown()</code> jQuery UI methods. The element's <code>step</code> attribute is used if it exists and the option is not explicitly set.</p>
+
+                <!--data-ui-spinner-step (number)-->
+                <label><input data-role="spinner" name="value" data-ui-spinner-step="5"></label>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-icon-down</h3></td>
+          <td>
+            <dl>
+              <dt><code>ui-icon-<em>name</em></code></dt>
+              <dd>
+                <p>Icons to use for buttons, matching an icon defined by the jQuery UI CSS Framework. Set to <code>false</code> to have no icons displayed.<br> <span class="help-block"><em>name</em> should be replaced with the necessary icon class, found on the <strong>Components</strong> page.</span></p>
+
+                <!--data-ui-icon-down (ui-icon-name)-->
+                <label><input data-role="spinner" name="value" data-ui-icon-down="ui-icon-carat-1-s"></label>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3>data-ui-icon-up</h3></td>
+          <td>
+            <dl>
+              <dt><code>ui-icon-<em>name</em></code></dt>
+              <dd>
+                <p>Icons to use for buttons, matching an icon defined by the jQuery UI CSS Framework. Set to <code>false</code> to have no icons displayed.<br> <span class="help-block"><em>name</em> should be replaced with the necessary icon class, found on the <strong>Components </strong> page.</span></p>
+
+                <!--data-ui-icon-up (ui-icon-name)-->
+                <label><input data-role="spinner" name="value" data-ui-icon-up="ui-icon-carat-1-n"></label>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+      
+  </section><!-- #spinners -->
+
+
+  <section id="tabs">
+    <header class="rule">
+      <h1>Tabs</h1>
+    </header>
+
+    <p>A single content area with multiple panels, each associated with a header in a list.</p>
+
+
+    <h2>API</h2>
+
+    <table class="table table-bordered table-striped">
+      <caption>
+        <h2 class="rule-dashed">Tab Options
+          <small>using the Data-Driven plugin</small>
+        </h2>
+      </caption>
+
+      <thead>
+      <tr>
+        <th style="width: 285px;">Data Attribute</th>
+        <th>Values</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>
+          <h3>data-role</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+
+        <td>
+          <dl>
+            <dt><code>tabs</code></dt>
+            <dd>
+              <p>Creates Tabs.</p>
+
+              <div data-role="tabs">
+                <ul>
+                  <li><a href="#tabs-1">Tab 1</a></li>
+                  <li><a href="#tabs-2">Tab 2</a></li>
+                </ul>
+                <div id="tabs-1">
+                  <p>content of tab-1</p>
+                </div>
+                <div id="tabs-2">
+                  <p>content of tab-2</p>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-tabs-active</h3></td>
+        <td>
+          <dl>
+            <dt><em>Number</em></dt>
+            <dd>
+              <p>Zero-based index of the tab to be selected on initialization. To set all tabs to unselected pass -1 as value.</p>
+
+              <!-- data-ui-tabs-selected (number) -->
+              <div data-role="tabs" data-ui-tabs-active="1">
+                <ul>
+                  <li><a href="#tabs-21">Tab 1</a></li>
+                  <li><a href="#tabs-22">Tab 2</a></li>
+                </ul>
+                <div id="tabs-21">
+                  <p>content of tab-1</p>
+                </div>
+                <div id="tabs-22">
+                  <p>content of tab-2</p>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-tabs-collapsible</h3></td>
+        <td>
+          <dl>
+            <dt><code>true</code></dt>
+            <dd>
+              <p>Allow an already selected tab to become unselected again upon reselection.</p>
+
+              <!--data-ui-tabs-collapsible (boolean)-->
+              <div data-role="tabs" data-ui-tabs-collapsible="true">
+                <ul>
+                  <li><a href="#tabs-9">Tab 1</a></li>
+                  <li><a href="#tabs-10">Tab 2</a></li>
+                </ul>
+                <div id="tabs-9">
+                  <p>content of tab-1</p>
+                </div>
+                <div id="tabs-10">
+                  <p>content of tab-2</p>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-tabs-vertical</h3></td>
+        <td>
+          <dl>
+            <dt><code>true</code></dt>
+            <dd>
+              <p>Whether or not to set the tabs vertically along the left side instead of along the top.</p>
+
+              <!--data-ui-tabs-vertical (boolean)-->
+              <div data-role="tabs" data-ui-tabs-vertical="true">
+                <ul>
+                  <li><a href="#tabs-23">Tab 1</a></li>
+                  <li><a href="#tabs-24">Tab 2</a></li>
+                </ul>
+                <div id="tabs-23">
+                  <p>content of tab-1</p>
+                </div>
+                <div id="tabs-24">
+                  <p>content of tab-2</p>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-disable</h3></td>
+        <td>
+          <dl>
+            <dt><em>Array</em></dt>
+            <dd>
+              <p>An array containing the zero-based indexes of the tabs that should be disabled, e.g., <code>[0, 2]</code> would disable the first and third tab.</p>
+
+              <p>NOTE: If disabling the first tab, you will still be able to see the content of the tab unless you also set <code>data-ui-tabs-active</code> to a tab that is not disabled.</p>
+
+              <div data-role="tabs" data-ui-tabs-active="1" data-ui-disable="[0, 2]">
+                <ul>
+                  <li><a href="#tabs-disabled-array-1">Tab 1</a></li>
+                  <li><a href="#tabs-disabled-array-2">Tab 2</a></li>
+                  <li><a href="#tabs-disabled-array-3">Tab 3</a></li>
+                  <li><a href="#tabs-disabled-array-4">Tab 4</a></li>
+                </ul>
+                <div id="tabs-disabled-array-1">
+                  <p>content of tab-1</p>
+                </div>
+                <div id="tabs-disabled-array-2">
+                  <p>content of tab-2</p>
+                </div>
+                <div id="tabs-disabled-array-3">
+                  <p>content of tab-3</p>
+                </div>
+                <div id="tabs-disabled-array-4">
+                  <p>content of tab-4</p>
+                </div>
+              </div>
+            </dd>
+
+            <dt><code>true</code></dt>
+            <dd>
+              <p>Disables (true) or enables (false) the tabs. Can be set when initialising (first creating) the tabs.</p>
+
+              <div data-role="tabs" data-ui-disable="true">
+                <ul>
+                  <li><a href="#tabs-disabled-1">Tab 1</a></li>
+                  <li><a href="#tabs-disabled-2">Tab 2</a></li>
+                </ul>
+                <div id="tabs-disabled-1">
+                  <p>content of tab-1</p>
+                </div>
+                <div id="tabs-disabled-2">
+                  <p>content of tab-2</p>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-event</h3></td>
+        <td>
+          <dl>
+            <dt><code>click</code> (default), <code>mouseover</code></dt>
+            <dd>
+              <p>The type of event to be used for selecting a tab.</p>
+              <!--data-ui-tabs-event (event)-->
+              <div data-role="tabs" data-ui-event="mouseover">
+                <ul>
+                  <li><a href="#tabs-15">Tab 1</a></li>
+                  <li><a href="#tabs-16">Tab 2</a></li>
+                </ul>
+                <div id="tabs-15">
+                  <p>content of tab-1</p>
+                </div>
+                <div id="tabs-16">
+                  <p>content of tab-2</p>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </section><!-- #tabs -->
+
+
+  <section id="tooltip">
+    <header class="rule">
+      <h1>Tooltips</h1>
+    </header>
+
+    <p>Customizable, themeable tooltips, replacing native tooltips.</p>
+
+
+    <h2>API</h2>
+
+    <table class="table table-bordered table-striped">
+      <caption>
+        <h2 class="rule-dashed">Tooltip Options
+          <small>using the Data-Driven plugin (Coming Soon)</small>
+        </h2>
+      </caption>
+
+      <thead>
+      <tr>
+        <th style="width: 195px;">Attribute</th>
+        <th>Values</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>
+          <h3>data-role</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+
+        <td>
+          <dl>
+            <dt><code>tooltip</code></dt>
+            <dd>
+              <p>Creates a tooltip.</p>
+
+              <label><input type="text" data-role="tooltip" title="Tooltip content goes here."></label>
+            </dd>
+
+            <dt><code>popover</code></dt>
+            <dd>
+              <p>Creates a popover that can be interacted with. It will persist until another tooltip is activated or a click event occurs outside the popover element.</p>
+
+              <label><input type="text" data-role="popover" data-ui-tooltip-content="Tooltip content with <a href='#tooltip'>link</a>."></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <h3>title</h3>
+          <p class="font-sz-small text-lite mar-none">- or -</p>
+          <h3>data-ui-tooltip-content</h3>
+          <p class="font-sz-small text-lite">Required</p>
+        </td>
+
+        <td>
+          <dl>
+            <dt><em>String</em></dt>
+            <dd>
+              <p>Content for the tooltip.</p>
+
+              <label><input type="text" data-role="tooltip" title="Tooltip content goes here."></label>
+            </dd>
+
+            <dt><em>HTML</em></dt>
+            <dd>
+              <p>HTML content for the tooltip.</p>
+
+              <p>NOTE: HTML can only be used in <code>data-ui-tooltip-content</code>.</p>
+
+              <label><input type="text" data-role="tooltip" data-ui-tooltip-content="Tooltip <span style='font-weight: bold;'>content</span> goes here."></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>class</h3></td>
+
+        <td>
+          <dl>
+            <dt><code>disabled</code></dt>
+            <dd>
+              <p>Disables the tooltip.</p>
+
+              <label><input type="text" data-role="tooltip" class="disabled" title="Tooltip content goes here."></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-tooltip-class</h3></td>
+        <td>
+          <dl>
+            <dt><em>String</em></dt>
+            <dd>
+              <p>A class to add to the widget, can be used to display various tooltip types, like warnings or errors.</p>
+
+              <!--data-tooltip-class (string)-->
+              <label><input type="text" data-role="tooltip" data-ui-tooltip-class="text-primary" title="Tool tip content goes here."/></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-tooltip-hide</h3></td>
+        <td>
+          <dl>
+            <dt><code>false</code></dt>
+            <dd>
+              <p>Disables the animation.</p>
+
+              <!--data-ui-tooltip-hide (boolean)-->
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-tooltip-hide="false"></label>
+            </dd>
+
+            <dt><em>Integer</em></dt>
+            <dd>
+              <p>The number of milliseconds to run the animation (e.g. 3000 is 3 seconds).</p>
+
+              <!--data-ui-tooltip-hide (number)-->
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-tooltip-hide="5000"></label>
+            </dd>
+
+            <dt><em>Easing</em></dt>
+            <dd>
+              <p><a href="http://api.jqueryui.com/easings/">Full List</a>.</p>
+
+              <!--data-ui-tooltip-hide (easing)-->
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-tooltip-hide='{ "duration": 1000, "easing": "easeInBounce" }'></label>
+            </dd>
+
+            <dt><em>Effects</em></dt>
+            <dd>
+              <p><code>"blind"</code>, <code>"bounce"</code>, <code>"clip"</code>, <code>"drop"</code>, <code>"explode"</code>, <code>"fold"</code>, <code>"highlight"</code>, <code>"puff"</code>, <code>"pulsate"</code>, <code>"scale"</code>, <code>"shake"</code>, <code>"size"</code>, <code>"slide"</code>, <code>"transfer"</code></p>
+
+              <!--data-ui-tooltip-hide (effects)-->
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-tooltip-hide='{ "duration":3000, "effect": "pulsate" }'></label>
+            </dd>
+
+            <dt>Animate</dt>
+            <dd>
+              <p>To animate the tooltip, you must set the duration, easing and effect (<code>{<em>duration</em>, <em>easing</em>, <em>effect</em>}</code>). The format is as follows:</p>
+
+              <p><code>data-ui-tooltip-hide='{ "duration": 1000, "easing": "swing", "effect": "slideUp" }'</code></p>
+
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-tooltip-hide='{ "duration": 1000, "easing": "swing", "effect": "slideUp" }'></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-tooltip-show</h3></td>
+        <td>
+          <dl>
+            <dt><code>false</code></dt>
+            <dd>
+              <p>Disables the animation.</p>
+
+              <!--data-ui-tooltip-hide (boolean)-->
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-tooltip-show="false"></label>
+            </dd>
+
+            <dt><em>Integer</em></dt>
+            <dd>
+              <p>The number of milliseconds to run the animation (e.g. 3000 is 3 seconds).</p>
+
+              <!--data-ui-tooltip-hide (number)-->
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-tooltip-show="5000"></label>
+            </dd>
+
+            <dt><em>Easing</em></dt>
+            <dd>
+              <p><a href="http://api.jqueryui.com/easings/">Full List</a>.</p>
+
+              <!--data-ui-tooltip-hide (easing)-->
+              <label><input data-role="tooltip" title="Tool tip content goes here." data-ui-tooltip-show='{ "duration":1000, "easing": "easeInBounce" }'></label>
+            </dd>
+
+            <dt><em>Effects</em></dt>
+            <dd>
+              <p><code>"blind"</code>, <code>"bounce"</code>, <code>"clip"</code>, <code>"drop"</code>, <code>"explode"</code>, <code>"fold"</code>, <code>"highlight"</code>, <code>"puff"</code>, <code>"pulsate"</code>, <code>"scale"</code>, <code>"shake"</code>, <code>"size"</code>, <code>"slide"</code>, <code>"transfer"</code></p>
+
+              <!--data-ui-tooltip-hide (effects)-->
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-tooltip-show='{ "duration":3000, "effect": "pulsate" }'></label>
+            </dd>
+
+            <dt>Animate</dt>
+            <dd>
+              <p>To animate the tooltip, you must set the duration, easing and effect (<code>{<em>duration</em>, <em>easing</em>, <em>effect</em>}</code>). The format is as follows:</p>
+
+              <p><code>data-ui-tooltip-show='{ "duration": 1000, "easing": "swing", "effect": "slideDown" }'</code></p>
+
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-tooltip-show='{ "duration": 1000, "easing": "swing", "effect": "slideDown" }'></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-tooltip-track</h3></td>
+        <td>
+          <dl>
+            <dt><code>true</code></dt>
+            <dd>
+              <p>Whether the tooltip should track (follow) the mouse.</p>
+
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-tooltip-track="true"/></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-position-my</h3></td>
+        <td>
+          <dl>
+            <dt><code>"top"</code>, <code>"center"</code>, <code>"bottom"</code>, <code>"left"</code>, <code>"right"</code></dt>
+            <dd>
+              <p>Defines which position on <strong>the element being positioned</strong> to align with the target element: "horizontal vertical" alignment. A single value such as <code>"right"</code> will default to <code>"right center"</code>, <code>"top"</code> will default to <code>"center top"</code> (following CSS convention).</p>
+
+              <p>Additional reading about <a href="http://api.jqueryui.com/position/">jQuery UI Positioning</a>.</p>
+
+              <!--data-ui-position-my (horizontal)-->
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-position-my="left center"></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-position-at</h3></td>
+        <td>
+          <dl>
+            <dt><code>"top"</code>, <code>"center"</code>, <code>"bottom"</code>, <code>"left"</code>, <code>"right"</code></dt>
+            <dd>
+              <p>Defines which position on <strong>the element being positioned</strong> to align with the target element: "horizontal vertical" alignment. A single value such as <code>"right"</code> will default to <code>"right center"</code>, <code>"top"</code> will default to <code>"center top"</code> (following CSS convention).</p>
+
+              <p>Additional reading about <a href="http://api.jqueryui.com/position/">jQuery UI Positioning</a>.</p>
+
+              <!--data-ui-position-at (vertical)-->
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-position-at="center top"/></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+
+      <tr>
+        <td><h3>data-ui-position-collision</h3></td>
+        <td>
+          <dl>
+            <dt><code>"flip"</code>, <code>"fit"</code>, <code>"fit flip"</code>, <code>"fit none"</code></dt>
+            <dd>
+              <p>When the positioned element overflows the window in some direction, move it to an alternative position. Similar to
+                <code>my</code> and <code>at</code>, this accepts a single value or a pair.</p>
+
+              <p>Additional reading about <a href="http://api.jqueryui.com/position/">jQuery UI Positioning</a>.</p>
+
+              <label><input type="text" data-role="tooltip" title="Tool tip content goes here." data-ui-position-collision="flip"/></label>
+            </dd>
+          </dl>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </section><!-- #tooltips -->
+</article><!-- @main -->
+
+
+<!-- footer -->
+<footer role="contentinfo">
+
+  <h1>Questions, Comments, Insights?</h1>
+  <p><a href="mailto:cory@dorning.me">Send us an email and let us help</a></p>
+
+  <h1>Ready to Get Started?</h1>
+  <p><a href="#">Download the latest version of Data-drven</a></p>
+
+</footer><!-- @contentinfo -->
+
+
+<!-- JavaScript at the bottom for fast page loading -->
+
+<!-- Libraries -->
+<script src="/boilerplate/master/js/vendor/jquery.min.js"></script>
+<script src="/boilerplate/master/js/vendor/jquery-ui.min.js"></script>
+
+<!-- load datadriven plugin -->
+<script src="jquery-datadriven.js"></script>
+
+<!-- demo scripts -->
+<script>
+  // autocomplete - must be accessible via global or namespace
+  var test = {
+    geonames: function ( request, response ) {
+    $.ajax({
+      url: "http://ws.geonames.org/searchJSON",
+      dataType: "jsonp",
+      data: {
+        featureClass: "P",
+        style: "full",
+        maxRows: 12,
+        name_startsWith: request.term
+      },
+      success: function( data ) {
+        response( $.map( data.geonames, function( item ) {
+          return {
+            label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+            value: item.name
+          }
+        }));
+      }
+    });
+  }},
+
+  geonames = function ( request, response ) {
+    $.ajax({
+      url: "http://ws.geonames.org/searchJSON",
+      dataType: "jsonp",
+      data: {
+        featureClass: "P",
+        style: "full",
+        maxRows: 12,
+        name_startsWith: request.term
+      },
+      success: function( data ) {
+        response( $.map( data.geonames, function( item ) {
+            return {
+              label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+              value: item.name
+            };
+          })
+        );
+      }
+    })
+  };
+
+  $(function() {
+
+    // buttons
+    // loading button
+    $('[data-ui-loading-text]')
+      .filter('[data-role="button"]')
+        .on('click', function(){
+          var $this = $(this);
+          setTimeout(function() { $this.button('reset'); }, 3000);
+        })
+      .end()
+      .filter('[data-role="buttonset"]')
+        .on('click', function(ev){
+          var $this = $(this);
+          setTimeout(function() { $this.buttonset('reset', ev); }, 3000);
+        });
+  });
+</script>
+
+</body>
+</html>
