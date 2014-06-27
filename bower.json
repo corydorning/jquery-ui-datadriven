@@ -1,0 +1,24 @@
+{
+  "name": "jquery-ui-datadriven",
+  "main": "jquery.ui.datadriven.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/corydorning/jquery-ui-datadriven",
+  "authors": [
+    "Cory Dorning <cory@dorning.me>"
+  ],
+  "description": "Data-driven is a jQuery UI override (see 'Duck Punch' or 'Monkey Patch') that extends the options of jQuery UI widgets to your HTML via the HTML5 data attribute.",
+  "keywords": [
+    "jquery",
+    "jquery ui",
+    "widgets",
+    "datadriven"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
