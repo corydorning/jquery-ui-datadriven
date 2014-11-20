@@ -188,7 +188,7 @@
     // override options with data-*
       options = {
         disabled: _element.hasClass('disabled') || _this.options.disabled,
-        text: _element.data('ui-button-text') || _this.options.text,
+        text: _element.data('ui-button-text') === 'false' ? _element.data('ui-button-text') : _this.options.text,
         icons: {
           primary: _element.data('ui-icon-primary') || _this.options.icons.primary,
           secondary: _element.data('ui-icon-secondary') || _this.options.icons.secondary
