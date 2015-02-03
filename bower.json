@@ -1,6 +1,6 @@
 {
   "name": "jquery-ui-datadriven",
-  "main": ["jquery.ui.datadriven.js", "datadriven.css"],
+  "main": ["jquery-ui-datadriven.js", "jquery-ui-datadriven.css"],
   "version": "1.0.1",
   "homepage": "https://github.com/corydorning/jquery-ui-datadriven",
   "authors": [

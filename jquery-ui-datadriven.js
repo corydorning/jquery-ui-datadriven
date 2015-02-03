@@ -424,7 +424,7 @@
         noWeekends = $target.data('ui-datepicker-noweekends'),
 
       // beforeShow function
-        beforeShow = function(el) {
+        beforeShow = function() {
           // get current max/min dates
           var defaultMaxdate = maxDate[0] !== undefined ? maxDate[0] instanceof Date ? maxDate[0] : _datepicker._determineDate(maxDate[0]) : null,
             defaultMindate = minDate[0] !== undefined ? minDate[0] instanceof Date ? minDate[0] : _datepicker._determineDate(minDate[0]) : null,
