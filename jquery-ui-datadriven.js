@@ -1,4 +1,4 @@
-/*! jquery.ui.datadriven.js
+/*! jquery-ui-datadriven.js
  *
  * Version: 2.4
  * Authored by: Cory Dorning
