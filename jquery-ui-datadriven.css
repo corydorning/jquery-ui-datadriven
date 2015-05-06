@@ -9,52 +9,6 @@
 
 
 /* =============================================================================
-    Vertical Tabs
-  ========================================================================== */
-.vtabs {
-  border-radius: 0 5px 5px;
-  box-sizing: border-box;
-  margin-left: 34px;
-}
-
-  .vtabs .ui-tabs-nav {
-    border-radius: 0 0 5px 5px;
-    letter-spacing: .1em; /* may want to adjust to make the text more legible */
-    position: absolute;
-      -moz-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-      -o-transform: rotate(90deg);
-      -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-      -moz-transform-origin: -2px -1px;
-      -ms-transform-origin: -2px -1px;
-      -o-transform-origin: -2px -1px;
-      -webkit-transform-origin: -2px -1px;
-    transform-origin: -2px -1px;
-  }
-    .lt-ie9 .vtabs .ui-tabs-nav {
-      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-      left: -34px;
-      z-index: 1;
-    }
-
-    .vtabs .ui-tabs-nav li {
-        -moz-transform: rotate(180deg);
-        -ms-transform: rotate(180deg);
-        -o-transform: rotate(180deg);
-        -webkit-transform: rotate(180deg);
-      transform: rotate(180deg);
-        -moz-transform-origin: 50% 12px;
-        -ms-transform-origin: 50% 12px;
-        -o-transform-origin: 50% 12px;
-        -webkit-transform-origin: 50% 12px;
-      transform-origin: 50% 12px;
-    }
-      .lt-ie9 .vtabs .ui-tabs-nav  li { float: right; }
-      .lt-ie8 .vtabs .ui-tabs-nav li { float: left; }
-
-
-/* =============================================================================
     Responsive Tables
   ========================================================================== */
 .ui-table-columntoggle .ui-table-cell-hidden { display: none; }
